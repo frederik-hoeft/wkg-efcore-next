@@ -28,7 +28,7 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
         MySqlDataReader,
         MySqlProcedureBuilder<TProcedure, TIOContainer>>,
     IMySqlProcedureBuilder
-    where TProcedure : StoredProcedure<TIOContainer>, IMySqlStoredProcedure<TIOContainer>
+    where TProcedure : StoredProcedure, IMySqlStoredProcedure<TIOContainer>
     where TIOContainer : class
 {
     internal MySqlProcedureBuilder() => Pass();

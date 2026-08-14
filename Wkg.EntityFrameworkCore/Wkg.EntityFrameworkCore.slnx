@@ -3,6 +3,7 @@
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
   </Folder>
+  <Project Path="Wkg.EntityFrameworkCore.MySql.Tests/Wkg.EntityFrameworkCore.MySql.Tests.csproj" Id="4ee7e608-ea0e-4d87-820e-8125ed9f5909" />
   <Project Path="Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql.csproj" />
   <Project Path="Wkg.EntityFrameworkCore.Oracle/Wkg.EntityFrameworkCore.Oracle.csproj" />
   <Project Path="Wkg.EntityFrameworkCore.SourceGeneration/Wkg.EntityFrameworkCore.SourceGeneration.csproj" />
