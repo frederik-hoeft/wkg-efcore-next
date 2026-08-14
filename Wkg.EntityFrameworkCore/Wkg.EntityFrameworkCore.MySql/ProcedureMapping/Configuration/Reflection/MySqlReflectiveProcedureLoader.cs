@@ -1,4 +1,4 @@
-using Wkg.EntityFrameworkCore.Configuration.Reflection;
+﻿using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.MySql.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
 

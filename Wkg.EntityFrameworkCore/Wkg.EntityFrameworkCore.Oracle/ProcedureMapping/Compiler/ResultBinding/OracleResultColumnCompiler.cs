@@ -1,13 +1,13 @@
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using System.Linq.Expressions;
+using Wkg.EntityFrameworkCore.Extensions;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
-using Wkg.EntityFrameworkCore.Extensions;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.ResultBinding;
 
-internal sealed class OracleResultColumnCompiler(IOracleResultColumnBuilder builder) 
+internal sealed class OracleResultColumnCompiler(IOracleResultColumnBuilder builder)
     : ResultColumnCompiler<IOracleResultColumnBuilder, OracleDataReader>(builder), IResultColumnCompiler
 {
     protected override Expression? GetColumnConverterOrDefault()

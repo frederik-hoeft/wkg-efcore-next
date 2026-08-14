@@ -21,7 +21,7 @@ public class OracleResultColumnBuilder<TResult, TProperty>
 
     OracleDbType? IOracleResultColumnBuilder.OracleDbType => OracleDbType;
 
-    internal OracleResultColumnBuilder(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper) 
+    internal OracleResultColumnBuilder(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper)
         : base(columnSelector, throwHelper) => Pass();
 
     /// <summary>
@@ -67,7 +67,7 @@ public class OracleResultColumnBuilder<TResult, TProperty>
         _ = OracleDbType ?? Context.ThrowHelper.Throw<ArgumentNullException, OracleDbType>("Attempted to build column with no valid DB Type!", nameof(OracleDbType));
     }
 
-    internal void SetCompilerHint(OracleResultColumnCompilerHint hint) => 
+    internal void SetCompilerHint(OracleResultColumnCompilerHint hint) =>
         CompilerHint = hint;
 
     /// <inheritdoc/>

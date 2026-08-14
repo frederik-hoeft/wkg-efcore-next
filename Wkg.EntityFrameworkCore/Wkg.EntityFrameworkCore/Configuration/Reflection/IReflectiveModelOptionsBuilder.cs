@@ -1,4 +1,4 @@
-using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
+﻿using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Configuration.Reflection;
 

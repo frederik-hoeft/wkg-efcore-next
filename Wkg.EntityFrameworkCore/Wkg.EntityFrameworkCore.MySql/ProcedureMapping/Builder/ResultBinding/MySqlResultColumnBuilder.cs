@@ -77,7 +77,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
         }
     }
 
-    internal void SetCompilerHint(MySqlResultColumnCompilerHint hint) => 
+    internal void SetCompilerHint(MySqlResultColumnCompilerHint hint) =>
         CompilerHint = hint;
 
     /// <inheritdoc/>

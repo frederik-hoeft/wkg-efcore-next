@@ -1,6 +1,6 @@
 ﻿using Oracle.ManagedDataAccess.Client;
-using System.Data.Common;
 using System.Data;
+using System.Data.Common;
 using System.Runtime.CompilerServices;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 

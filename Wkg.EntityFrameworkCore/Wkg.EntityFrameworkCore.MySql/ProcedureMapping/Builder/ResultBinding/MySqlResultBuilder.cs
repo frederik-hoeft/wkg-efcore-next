@@ -20,7 +20,7 @@ public interface IMySqlResultBuilder : IResultBuilder;
 /// Initializes a new instance of the <see cref="MySqlResultBuilder{TResult}"/> class.
 /// </remarks>
 /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
-public class MySqlResultBuilder<TResult>(IProcedureThrowHelper throwHelper) 
+public class MySqlResultBuilder<TResult>(IProcedureThrowHelper throwHelper)
     : ResultBuilder<TResult, MySqlDataReader, MySqlResultBuilder<TResult>>(throwHelper, typeof(TResult)), IMySqlResultBuilder
     where TResult : class
 {

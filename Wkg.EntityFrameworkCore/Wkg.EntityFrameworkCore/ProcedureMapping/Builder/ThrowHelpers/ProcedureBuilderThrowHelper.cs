@@ -9,6 +9,6 @@ internal sealed class ProcedureBuilderThrowHelper<TProcedure> : ThrowHelperBase,
     public IResultThrowHelper ForResult<TResult>() =>
         new ResultBuilderThrowHelper(typeof(TProcedure), typeof(TResult));
 
-    IThrowHelper IProcedureThrowHelper.ForParameter(PropertyInfo property) => 
+    IThrowHelper IProcedureThrowHelper.ForParameter(PropertyInfo property) =>
         new ParameterBuilderThrowHelper(typeof(TProcedure), property);
 }

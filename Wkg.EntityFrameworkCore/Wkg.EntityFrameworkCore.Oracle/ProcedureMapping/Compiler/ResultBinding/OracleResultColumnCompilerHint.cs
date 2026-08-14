@@ -1,4 +1,4 @@
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using System.Linq.Expressions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 

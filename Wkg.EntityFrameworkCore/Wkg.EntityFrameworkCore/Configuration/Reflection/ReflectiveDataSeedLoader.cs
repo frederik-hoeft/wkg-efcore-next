@@ -1,11 +1,11 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Collections;
 using System.Reflection;
-using Wkg.Logging;
-using Wkg.Reflection.Extensions;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
-using System.Collections;
+using Wkg.Logging;
+using Wkg.Reflection.Extensions;
 
 namespace Wkg.EntityFrameworkCore.Configuration.Reflection;
 
@@ -31,7 +31,7 @@ internal sealed class ReflectiveDataSeedLoader : ReflectiveLoaderBase, IReflecti
 
         Log.WriteInfo($"{nameof(ReflectiveDataSeedLoader)} is initializing.");
 
-        ReflectiveDataSeed[] dataSeeds = 
+        ReflectiveDataSeed[] dataSeeds =
         [
             .. TargetAssembliesOrWithEntryPoint(targetAssemblies)
             // get all types in these assemblies
@@ -81,7 +81,7 @@ internal sealed class ReflectiveDataSeedLoader : ReflectiveLoaderBase, IReflecti
                 object entityTypeBuilderObj = genericEntityTypeBuilderFactory.Invoke(builder, null)!;
                 entityTypeBuilder = (EntityTypeBuilder)entityTypeBuilderObj;
             }
-            object[] data = [..(IEnumerable)dataSeed.GetDataSeed!.Invoke(obj: null, parameters: null)!];
+            object[] data = [.. (IEnumerable)dataSeed.GetDataSeed!.Invoke(obj: null, parameters: null)!];
             entityTypeBuilder.HasData(data);
 
             Log.WriteDiagnostic($"{nameof(ReflectiveDataSeedLoader)} loaded {dataSeed.OwnerType.Name} providing {data.Length} seed data entries for entity type {dataSeed.EntityType.Name}.");

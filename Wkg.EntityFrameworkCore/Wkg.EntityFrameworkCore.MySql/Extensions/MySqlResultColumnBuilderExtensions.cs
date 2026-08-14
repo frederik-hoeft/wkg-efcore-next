@@ -1,11 +1,11 @@
 ﻿using MySql.Data.MySqlClient;
 using MySql.Data.Types;
 using System.Linq.Expressions;
+using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.Extensions;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
-using Wkg.Common.Extensions;
 
 namespace Wkg.EntityFrameworkCore.MySql.Extensions;
 

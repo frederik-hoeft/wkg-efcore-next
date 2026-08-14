@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;

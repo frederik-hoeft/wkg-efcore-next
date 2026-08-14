@@ -15,7 +15,7 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 /// Initializes a new instance of the <see cref="OracleResultBuilder{TResult}"/> class.
 /// </remarks>
 /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
-public class OracleResultBuilder<TResult>(IProcedureThrowHelper throwHelper) 
+public class OracleResultBuilder<TResult>(IProcedureThrowHelper throwHelper)
     : ResultBuilder<TResult, OracleDataReader, OracleResultBuilder<TResult>>(throwHelper, typeof(TResult)), IOracleResultBuilder
     where TResult : class
 {

@@ -12,8 +12,8 @@ namespace Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 /// <param name="ColumnFactory">The factory expression used to read the column value from the <see cref="DbDataReader"/>.</param>
 public readonly record struct CompiledResultColumn
 (
-    string ColumnName, 
-    string PropertyName, 
-    Type PropertyClrType, 
+    string ColumnName,
+    string PropertyName,
+    Type PropertyClrType,
     Expression ColumnFactory
 );

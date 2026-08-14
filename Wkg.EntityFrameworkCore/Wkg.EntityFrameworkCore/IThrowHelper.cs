@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Wkg.Logging;
 
 namespace Wkg.EntityFrameworkCore;
@@ -16,7 +16,7 @@ public interface IThrowHelper
     /// <param name="message">The message that describes the error.</param>
     [DoesNotReturn]
     [StackTraceHidden]
-    public void Throw<TException>(string message) where TException : Exception, new();
+void Throw<TException>(string message) where TException : Exception, new();
 
     /// <summary>
     /// Throws an exception of type <typeparamref name="TException"/> with the specified <paramref name="message"/> and expected return type <typeparamref name="T"/>.
@@ -27,7 +27,7 @@ public interface IThrowHelper
     /// <returns>never</returns>
     [DoesNotReturn]
     [StackTraceHidden]
-    public T Throw<TException, T>(string message) where TException : Exception, new();
+T Throw<TException, T>(string message) where TException : Exception, new();
 
     /// <summary>
     /// Throws an <see cref="ArgumentException"/> of type <typeparamref name="TArgumentException"/> with the specified <paramref name="message"/> and <paramref name="paramName"/>.
@@ -37,7 +37,7 @@ public interface IThrowHelper
     /// <param name="paramName">The name of the parameter that caused the current exception.</param>
     [DoesNotReturn]
     [StackTraceHidden]
-    public void Throw<TArgumentException>(string message, string paramName) where TArgumentException : ArgumentException, new();
+void Throw<TArgumentException>(string message, string paramName) where TArgumentException : ArgumentException, new();
 
     /// <summary>
     /// Throws an <see cref="ArgumentException"/> of type <typeparamref name="TArgumentException"/> with the specified <paramref name="message"/>, <paramref name="paramName"/>, and expected return type <typeparamref name="T"/>.
@@ -49,18 +49,18 @@ public interface IThrowHelper
     /// <returns>never</returns>
     [DoesNotReturn]
     [StackTraceHidden]
-    public T Throw<TArgumentException, T>(string message, string paramName) where TArgumentException : ArgumentException, new();
+T Throw<TArgumentException, T>(string message, string paramName) where TArgumentException : ArgumentException, new();
 
     /// <summary>
     /// Logs a warning <paramref name="message"/> in the current context to the configured <see cref="Log.CurrentLogger"/>.
     /// </summary>
     /// <param name="message">The message to be logged.</param>
-    public void Warn(string message);
+    void Warn(string message);
 
     /// <summary>
     /// Logs a warning <paramref name="message"/> in the current context to the configured <see cref="Log.CurrentLogger"/> with the specified <paramref name="paramName"/>.
     /// </summary>
     /// <param name="message">The message to be logged.</param>
     /// <param name="paramName">The name of the parameter that caused the warning.</param>
-    public void Warn(string message, string paramName);
+    void Warn(string message, string paramName);
 }

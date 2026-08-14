@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 using Wkg.EntityFrameworkCore.SourceGeneration.Helpers;
 

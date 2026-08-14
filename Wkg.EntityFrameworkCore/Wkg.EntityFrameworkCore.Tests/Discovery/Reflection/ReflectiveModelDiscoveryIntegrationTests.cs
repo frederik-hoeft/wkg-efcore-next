@@ -31,7 +31,7 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
         // Assert - Verify that all expected entity types are registered in the model
         List<IEntityType> entityTypes = [.. model.GetEntityTypes()];
         HashSet<string> entityTypeNames = [.. entityTypes.Select(et => et.ClrType.Name)];
-        
+
         Assert.Contains("Book", entityTypeNames, "Book entity should be registered");
         Assert.Contains("Category", entityTypeNames, "Category entity should be registered");
         Assert.Contains("Magazine", entityTypeNames, "Magazine entity should be registered");
@@ -68,10 +68,10 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
         // Act
         IModel model = context.Model;
         IEntityType? bookEntityType = model.FindEntityType(typeof(Book));
-        
+
         // Assert
         Assert.IsNotNull(bookEntityType, "Book entity type should be found");
-        
+
         // Check table configuration
         Assert.AreEqual("books", bookEntityType.GetTableName());
 
@@ -126,16 +126,16 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
         IModel model = context.Model;
         IEntityType? magazineEntityType = model.FindEntityType(typeof(Magazine));
         IEntityType? categoryEntityType = model.FindEntityType(typeof(Category));
-        
+
         // Assert
         Assert.IsNotNull(magazineEntityType);
         Assert.IsNotNull(categoryEntityType);
 
         // Check foreign key relationship
         List<IForeignKey> foreignKeys = [.. magazineEntityType.GetForeignKeys()];
-        IForeignKey? categoryForeignKey = foreignKeys.FirstOrDefault(fk => 
+        IForeignKey? categoryForeignKey = foreignKeys.FirstOrDefault(fk =>
             fk.PrincipalEntityType.ClrType == typeof(Category));
-        
+
         Assert.IsNotNull(categoryForeignKey, "Category foreign key should exist");
         Assert.AreEqual("fk_magazines_category", categoryForeignKey.GetConstraintName());
         Assert.AreEqual(DeleteBehavior.Cascade, categoryForeignKey.DeleteBehavior);
@@ -162,27 +162,27 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
         IEntityType? bookAuthorEntityType = model.FindEntityType(typeof(BookAuthor));
         IEntityType? bookEntityType = model.FindEntityType(typeof(Book));
         IEntityType? authorEntityType = model.FindEntityType(typeof(Author));
-        
+
         // Assert
         Assert.IsNotNull(bookAuthorEntityType);
         Assert.IsNotNull(bookEntityType);
         Assert.IsNotNull(authorEntityType);
-        
+
         // Check BookAuthor table configuration - Accept either explicit or convention naming
         string? tableName = bookAuthorEntityType.GetTableName();
-        Assert.IsTrue(tableName is "book_authors" or "BookAuthor", 
+        Assert.IsTrue(tableName is "book_authors" or "BookAuthor",
             $"Table name should be 'book_authors' or 'BookAuthor', but was '{tableName}'");
 
         // Check foreign key relationships
         List<IForeignKey> foreignKeys = [.. bookAuthorEntityType.GetForeignKeys()];
         Assert.HasCount(2, foreignKeys, "BookAuthor should have two foreign keys");
 
-        IForeignKey? bookForeignKey = foreignKeys.FirstOrDefault(fk => 
+        IForeignKey? bookForeignKey = foreignKeys.FirstOrDefault(fk =>
             fk.PrincipalEntityType.ClrType == typeof(Book));
         Assert.IsNotNull(bookForeignKey);
         Assert.AreEqual("fk_book_authors_book", bookForeignKey.GetConstraintName());
 
-        IForeignKey? authorForeignKey = foreignKeys.FirstOrDefault(fk => 
+        IForeignKey? authorForeignKey = foreignKeys.FirstOrDefault(fk =>
             fk.PrincipalEntityType.ClrType == typeof(Author));
         Assert.IsNotNull(authorForeignKey);
         Assert.AreEqual("fk_book_authors_author", authorForeignKey.GetConstraintName());
@@ -198,7 +198,7 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
         // Act
         IModel model = context.Model;
         IEntityType? magazineEntityType = model.FindEntityType(typeof(Magazine));
-        
+
         // Assert - Magazine inherits from BaseProduct, so should have base properties configured
         Assert.IsNotNull(magazineEntityType);
 
@@ -234,12 +234,12 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
 
         // Test basic CRUD operations
         Category category = new()
-        { 
-            Name = "Science Fiction", 
+        {
+            Name = "Science Fiction",
             Description = "Sci-fi magazines",
             Magazines = []
         };
-        
+
         context.Categories.Add(category);
         context.SaveChanges();
 
@@ -258,21 +258,21 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
             Category = savedCategory,
             IssueNumber = 1
         };
-        
+
         context.Magazines.Add(magazine);
         context.SaveChanges();
 
         Magazine savedMagazine = context.Magazines
             .Include(m => m.Category)
             .First(m => m.Name == "Asimov's Science Fiction");
-        
+
         Assert.AreEqual("Asimov's Science Fiction", savedMagazine.Name);
         Assert.AreEqual(savedCategory.Id, savedMagazine.CategoryId);
         Assert.AreEqual("Science Fiction", savedMagazine.Category.Name);
     }
 
     // Test DbContext class
-    private sealed class TestDbContext(DbContextOptions<TestDbContext<object>> options, TestDiscoveryContextFactoryProvider discoveryContextFactoryProvider) 
+    private sealed class TestDbContext(DbContextOptions<TestDbContext<object>> options, TestDiscoveryContextFactoryProvider discoveryContextFactoryProvider)
         : TestDbContext<object>(options, discoveryContextFactoryProvider);
 
     private class TestDbContext<T>(DbContextOptions<TestDbContext<T>> options, TestDiscoveryContextFactoryProvider discoveryContextFactoryProvider) : DbContext(options)

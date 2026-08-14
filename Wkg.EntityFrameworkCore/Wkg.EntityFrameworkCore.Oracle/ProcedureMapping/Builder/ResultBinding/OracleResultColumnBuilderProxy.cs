@@ -16,8 +16,8 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 /// Initializes a new instance of the <see cref="OracleResultColumnBuilderProxy{TResult, TProperty, TColumn}"/> class.
 /// </remarks>
 /// <param name="proxiedBuilder">The proxied builder.</param>
-public class OracleResultColumnBuilderProxy<TResult, TProperty, TColumn>(OracleResultColumnBuilder<TResult, TProperty> proxiedBuilder) 
-    : TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, OracleResultColumnBuilder<TResult, TProperty>, 
+public class OracleResultColumnBuilderProxy<TResult, TProperty, TColumn>(OracleResultColumnBuilder<TResult, TProperty> proxiedBuilder)
+    : TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, OracleResultColumnBuilder<TResult, TProperty>,
         OracleResultColumnBuilderProxy<TResult, TProperty, TColumn>>(proxiedBuilder), IOracleResultColumnBuilder
 {
     OracleDbType? IOracleResultColumnBuilder.OracleDbType => ProxiedBuilder.To<IOracleResultColumnBuilder>().OracleDbType;

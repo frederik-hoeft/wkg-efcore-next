@@ -3,9 +3,9 @@ using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq.Expressions;
 using System.Reflection;
+using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
-using Wkg.Common.Extensions;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 
@@ -139,7 +139,7 @@ public abstract class ResultColumnBuilderBase<TResult, TProperty, TResultColumnB
     /// </summary>
     /// <exception cref="ArgumentNullException"/>
     [MemberNotNull(nameof(ColumnName))]
-    protected virtual void AssertIsValid() => 
+    protected virtual void AssertIsValid() =>
         _ = ColumnName ?? Context.ThrowHelper.Throw<ArgumentNullException, string>("Attempted to build column without name!", nameof(ColumnName));
 
     /// <summary>
@@ -168,7 +168,7 @@ public abstract class ResultColumnBuilderBase<TResult, TProperty, TResultColumnB
 /// Creates a new instance of the <see cref="ResultColumnBuilder{TResult, TProperty, TResultColumnBuilderImpl}"/> class.
 /// </remarks>
 /// <inheritdoc/>
-public abstract class ResultColumnBuilder<TResult, TProperty, TResultColumnBuilderImpl>(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper) 
+public abstract class ResultColumnBuilder<TResult, TProperty, TResultColumnBuilderImpl>(Expression<Func<TResult, TProperty>> columnSelector, IResultThrowHelper throwHelper)
     : ResultColumnBuilderBase<TResult, TProperty, TResultColumnBuilderImpl>(columnSelector, throwHelper)
     where TResultColumnBuilderImpl : ResultColumnBuilder<TResult, TProperty, TResultColumnBuilderImpl>
 {

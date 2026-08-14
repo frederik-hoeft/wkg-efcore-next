@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Configuration.Reflection;

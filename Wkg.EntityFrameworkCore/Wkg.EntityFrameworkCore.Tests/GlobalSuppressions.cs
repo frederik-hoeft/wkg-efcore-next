@@ -6,8 +6,8 @@
 using System.Diagnostics.CodeAnalysis;
 
 [assembly: SuppressMessage(
-    "Maintainability", 
+    "Maintainability",
     "CA1515:Consider making public types internal",
     Justification = "Unit tests need to be public",
-    Scope = "namespaceanddescendants", 
+    Scope = "namespaceanddescendants",
     Target = "~N:Wkg.EntityFrameworkCore.Tests")]

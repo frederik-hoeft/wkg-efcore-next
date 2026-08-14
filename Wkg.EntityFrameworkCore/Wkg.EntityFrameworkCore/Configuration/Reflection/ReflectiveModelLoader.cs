@@ -1,10 +1,10 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System.Reflection;
+using Wkg.EntityFrameworkCore.Configuration.Discovery;
+using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 using Wkg.Logging;
 using Wkg.Reflection.Extensions;
-using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
-using Wkg.EntityFrameworkCore.Configuration.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Configuration.Reflection;
 
@@ -36,7 +36,7 @@ internal sealed class ReflectiveModelLoader : ReflectiveLoaderBase, IReflectiveM
 
 #pragma warning disable CS0618 // Type or member is obsolete
         // TODO: drop support for IReflectiveModelConfiguration in future major release
-        ReflectiveEntity[] entities = 
+        ReflectiveEntity[] entities =
         [
             .. TargetAssembliesOrWithEntryPoint(targetAssemblies)
             // get all types in these assemblies

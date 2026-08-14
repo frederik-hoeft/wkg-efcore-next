@@ -1,7 +1,7 @@
 ﻿using System.Data.Common;
 using System.Linq.Expressions;
-using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.Common.Extensions;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 
@@ -20,7 +20,7 @@ namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 /// Initializes a new instance of the <see cref="TypedResultColumnBuilderProxy{TResult, TProperty, TColumn, TProxiedBuilder, TProxyImpl}"/> class.
 /// </remarks>
 /// <param name="proxiedBuilder">The proxied builder.</param>
-public abstract class TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, TProxiedBuilder, TProxyImpl>(TProxiedBuilder proxiedBuilder) 
+public abstract class TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, TProxiedBuilder, TProxyImpl>(TProxiedBuilder proxiedBuilder)
     : ResultColumnBuilderBase<TResult, TProperty, TProxyImpl>(proxiedBuilder.To<IResultColumnBuilder>().Context)
     where TProxiedBuilder : ResultColumnBuilder<TResult, TProperty, TProxiedBuilder>
     where TProxyImpl : TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, TProxiedBuilder, TProxyImpl>

@@ -1,4 +1,4 @@
-using Oracle.ManagedDataAccess.Client;
+﻿using Oracle.ManagedDataAccess.Client;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;

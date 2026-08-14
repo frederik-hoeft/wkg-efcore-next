@@ -31,7 +31,7 @@ public interface ICompiledProcedure
 /// <param name="parameters">The compiled parameters of this stored procedure.</param>
 /// <param name="procedureType">The CLR type of the command object managing this procedure.</param>
 /// <param name="compiledResult">The compiled result returned by this stored procedure.</param>
-public sealed class CompiledProcedure<TCompiledParameter>(string procedureName, bool isFunction, TCompiledParameter[] parameters, Type procedureType, CompiledResult? compiledResult) 
+public sealed class CompiledProcedure<TCompiledParameter>(string procedureName, bool isFunction, TCompiledParameter[] parameters, Type procedureType, CompiledResult? compiledResult)
     : ICompiledProcedure where TCompiledParameter : struct, ICompiledParameter
 {
     /// <summary>

@@ -6,6 +6,6 @@ internal sealed class ResultBuilderThrowHelper(Type procedure, Type result) : Th
 {
     protected override string TargetSite { get; } = $"Result '{result.Name}' in procedure or function '{procedure.Name}'";
 
-    IThrowHelper IResultThrowHelper.ForColumn(PropertyInfo property) => 
+    IThrowHelper IResultThrowHelper.ForColumn(PropertyInfo property) =>
         new ResultColumnBuilderThrowHelper(procedure, result, property);
 }

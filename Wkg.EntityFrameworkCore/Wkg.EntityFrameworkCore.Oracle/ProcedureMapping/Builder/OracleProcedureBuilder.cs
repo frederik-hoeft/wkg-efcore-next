@@ -69,6 +69,6 @@ public class OracleProcedureBuilder<TProcedure, TIOContainer>
     }
 
     /// <inheritdoc/>
-    protected override IProcedureCompiler<OracleCompiledParameter> Build() => 
+    protected override IProcedureCompiler<OracleCompiledParameter> Build() =>
         new OracleProcedureCompiler(this, typeof(TProcedure));
 }

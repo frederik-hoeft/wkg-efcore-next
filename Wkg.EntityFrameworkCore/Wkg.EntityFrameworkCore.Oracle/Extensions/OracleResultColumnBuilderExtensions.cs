@@ -236,10 +236,10 @@ public static class OracleResultColumnBuilderExtensions
     /// <returns>The builder instance for fluent configuration.</returns>
     public static OracleResultColumnBuilderProxy<TResult, TProperty, OracleBinary> GetAsOracleBinary<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
-          builder.HasDbType(OracleDbType.Raw);
-          builder.SetCompilerHint(OracleResultColumnCompilerHint.Create((reader, name) => reader.GetOracleBinary(reader.GetOrdinal(name))));
-          return new(builder);
-     }
+        builder.HasDbType(OracleDbType.Raw);
+        builder.SetCompilerHint(OracleResultColumnCompilerHint.Create((reader, name) => reader.GetOracleBinary(reader.GetOrdinal(name))));
+        return new(builder);
+    }
 
     /// <summary>
     /// Instructs the compiler to retrieve the column value as an <see cref="OracleBlob"/>.

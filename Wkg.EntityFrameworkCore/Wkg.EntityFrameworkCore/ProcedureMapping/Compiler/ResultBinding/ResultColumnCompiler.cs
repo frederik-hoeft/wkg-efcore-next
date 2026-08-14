@@ -51,7 +51,7 @@ public abstract class ResultColumnCompiler<TBuilder, TDbDataReader>(TBuilder bui
                 GetColumnConverterOrDefault()
             );
         }
-        
+
         Expression valueExpression = Expression.Invoke(compilerSettings.ReaderGetExpression, readerExpression, nameExpression);
 
         // Handle null values

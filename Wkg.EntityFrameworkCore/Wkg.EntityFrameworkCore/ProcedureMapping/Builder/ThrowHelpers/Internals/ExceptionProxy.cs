@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers.Internals;
 

@@ -13,7 +13,7 @@ public static class ReadOnlyAnnotatableExtensions
     /// <param name="annotatable">The <see cref="IReadOnlyAnnotatable"/> to check.</param>
     /// <param name="name">The name of the annotation.</param>
     /// <returns><see langword="true"/> if the <see cref="IReadOnlyAnnotatable"/> has an annotation with the specified name; otherwise, <see langword="false"/>.</returns>
-    public static bool HasAnnotation(this IReadOnlyAnnotatable annotatable, string name) => 
+    public static bool HasAnnotation(this IReadOnlyAnnotatable annotatable, string name) =>
         annotatable.FindAnnotation(name) is not null;
 
     /// <summary>
@@ -22,6 +22,6 @@ public static class ReadOnlyAnnotatableExtensions
     /// <param name="annotatable">The <see cref="IReadOnlyAnnotatable"/> to check.</param>
     /// <param name="predicate">The predicate to match.</param>
     /// <returns><see langword="true"/> if the <see cref="IReadOnlyAnnotatable"/> has an annotation matching the specified predicate; otherwise, <see langword="false"/>.</returns>
-    public static bool HasAnnotation(this IReadOnlyAnnotatable annotatable, Func<string, bool> predicate) => 
+    public static bool HasAnnotation(this IReadOnlyAnnotatable annotatable, Func<string, bool> predicate) =>
         annotatable.GetAnnotations().Any(a => predicate(a.Name));
 }

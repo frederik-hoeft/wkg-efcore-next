@@ -19,7 +19,7 @@ internal static class ProcedureRegistry
             };
             return instance;
         }
-        
+
         throw new InvalidOperationException($"Procedure {typeof(T).Name} has not been mapped or built.");
     }
 

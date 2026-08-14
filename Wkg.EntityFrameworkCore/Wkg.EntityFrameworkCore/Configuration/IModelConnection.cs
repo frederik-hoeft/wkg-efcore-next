@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
 using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
@@ -11,7 +11,7 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// <typeparam name="TLeft">The type of the left entity.</typeparam>
 /// <typeparam name="TRight">The type of the right entity.</typeparam>
 [GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.ModelConnection)]
-public interface IModelConnection<TConnection, TLeft, TRight> 
+public interface IModelConnection<TConnection, TLeft, TRight>
     where TConnection : class, IModelConnection<TConnection, TLeft, TRight>
     where TLeft : class, IModelConfiguration<TLeft>
     where TRight : class, IModelConfiguration<TRight>

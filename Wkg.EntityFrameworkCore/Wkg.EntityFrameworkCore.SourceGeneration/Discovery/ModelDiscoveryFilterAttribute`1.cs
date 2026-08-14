@@ -1,4 +1,4 @@
-namespace Wkg.EntityFrameworkCore.SourceGeneration.Discovery;
+﻿namespace Wkg.EntityFrameworkCore.SourceGeneration.Discovery;
 
 /// <summary>
 /// When applied to a class decorated with <see cref="ModelLoaderAttribute"/>, specifies that only models

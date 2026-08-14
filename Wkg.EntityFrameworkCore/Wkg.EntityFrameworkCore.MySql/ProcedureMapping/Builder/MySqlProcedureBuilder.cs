@@ -71,7 +71,7 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
             ThrowHelper.Throw<ArgumentException>("MySql functions cannot have output parameters!", name);
         }
     }
-    
+
     /// <inheritdoc/>
     protected override IProcedureCompiler<MySqlCompiledParameter> Build() =>
         new MySqlProcedureCompiler(this, typeof(TProcedure));

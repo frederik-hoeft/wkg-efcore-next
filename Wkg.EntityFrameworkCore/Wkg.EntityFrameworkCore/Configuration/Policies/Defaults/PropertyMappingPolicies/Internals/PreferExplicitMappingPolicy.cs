@@ -8,7 +8,7 @@ internal readonly struct PreferExplicitMappingPolicy : IMappingPolicy
 {
     public void Audit(IMutableEntityType entityType)
     {
-        IMutableProperty[] unmappedProperties = 
+        IMutableProperty[] unmappedProperties =
         [
             .. entityType
             .GetDeclaredProperties()

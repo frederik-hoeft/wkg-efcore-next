@@ -1,4 +1,4 @@
-using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
+﻿using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ParameterConversion;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;

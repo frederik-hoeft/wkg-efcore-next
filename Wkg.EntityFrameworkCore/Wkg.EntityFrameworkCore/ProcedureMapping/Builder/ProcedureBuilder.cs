@@ -1,11 +1,11 @@
 ﻿using System.Data;
 using System.Data.Common;
 using System.Diagnostics.CodeAnalysis;
+using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
-using Wkg.Common.Extensions;
 using Wkg.Reflection.Extensions;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
@@ -31,7 +31,7 @@ public interface IProcedureBuilder
 /// </summary>
 /// <typeparam name="TCompiledParameter">The concrete type of the compiled parameter.</typeparam>
 /// <typeparam name="TDataReader">The concrete type of the <see cref="DbDataReader"/> to be used.</typeparam>
-public interface IProcedureBuilder<TCompiledParameter, TDataReader> : IProcedureBuilder 
+public interface IProcedureBuilder<TCompiledParameter, TDataReader> : IProcedureBuilder
     where TCompiledParameter : struct, ICompiledParameter
     where TDataReader : DbDataReader
 {

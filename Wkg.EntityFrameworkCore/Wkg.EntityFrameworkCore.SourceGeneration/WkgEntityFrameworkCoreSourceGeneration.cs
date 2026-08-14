@@ -14,7 +14,8 @@ internal sealed class WkgEntityFrameworkCoreSourceGeneration : DeploymentVersion
         CI_DEPLOYMENT__VERSION_PREFIX,
         CI_DEPLOYMENT__VERSION_SUFFIX,
         CI_DEPLOYMENT__DATETIME_UTC
-    ) { }
+    )
+    { }
 
     /// <summary>
     /// Provides version information for the Wkg.EntityFrameworkCore.SourceGeneration analyzer package.

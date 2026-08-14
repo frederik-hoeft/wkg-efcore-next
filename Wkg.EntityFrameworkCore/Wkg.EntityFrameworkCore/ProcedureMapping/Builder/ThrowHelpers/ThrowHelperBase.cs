@@ -1,5 +1,5 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.Diagnostics;
+﻿using System.Diagnostics;
+using System.Diagnostics.CodeAnalysis;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers.Internals;
 using Wkg.Logging;
 using Wkg.Logging.Writers;

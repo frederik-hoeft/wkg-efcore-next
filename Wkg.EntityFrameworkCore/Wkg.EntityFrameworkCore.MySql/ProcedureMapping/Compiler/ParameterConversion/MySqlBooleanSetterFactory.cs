@@ -24,12 +24,12 @@ internal readonly struct MySqlBooleanSetterFactory
         _accessorBuilder = accessorBuilder;
     }
 
-    public static MySqlBooleanSetterFactory CreateFrom(IMySqlParameterBuilder builder, IAccessorBuilder accessorBuilder) => 
+    public static MySqlBooleanSetterFactory CreateFrom(IMySqlParameterBuilder builder, IAccessorBuilder accessorBuilder) =>
         new(builder, accessorBuilder);
 
     public PropertySetter CreateSetter() => _builder.MySqlDbType switch
     {
-        MySqlDbType.Bit 
+        MySqlDbType.Bit
             or MySqlDbType.UInt64 => CreateSetterInternal<ulong>(),
         MySqlDbType.Byte => CreateSetterInternal<sbyte>(),
         MySqlDbType.Int16 => CreateSetterInternal<short>(),

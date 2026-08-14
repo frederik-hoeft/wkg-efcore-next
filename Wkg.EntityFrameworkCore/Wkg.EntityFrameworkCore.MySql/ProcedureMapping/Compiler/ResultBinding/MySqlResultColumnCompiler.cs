@@ -1,4 +1,4 @@
-using MySql.Data.MySqlClient;
+﻿using MySql.Data.MySqlClient;
 using System.Data;
 using System.Linq.Expressions;
 using Wkg.EntityFrameworkCore.Extensions;
@@ -8,13 +8,13 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 
-internal sealed class MySqlResultColumnCompiler(IMySqlResultColumnBuilder builder) 
+internal sealed class MySqlResultColumnCompiler(IMySqlResultColumnBuilder builder)
     : ResultColumnCompiler<IMySqlResultColumnBuilder, MySqlDataReader>(builder), IResultColumnCompiler
 {
     protected override Expression? GetColumnConverterOrDefault()
     {
-        if (Builder.MySqlDbType is MySqlDbType.JSON 
-            && Builder.Conversion is null 
+        if (Builder.MySqlDbType is MySqlDbType.JSON
+            && Builder.Conversion is null
             && Builder.Context.ResultProperty.PropertyType != typeof(string))
         {
             return JsonResultConverter.For(Builder.Context.ResultProperty.PropertyType);

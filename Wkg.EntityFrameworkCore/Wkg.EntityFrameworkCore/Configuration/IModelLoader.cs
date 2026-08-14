@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
 using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;

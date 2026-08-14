@@ -18,7 +18,7 @@ internal abstract class ExplicitNamingPolicy : IEntityNamingPolicy
         return false;
     }
 
-    protected static IMutableProperty[] GetImplicitProperties(IMutableEntityType entityType) => 
+    protected static IMutableProperty[] GetImplicitProperties(IMutableEntityType entityType) =>
     [
         .. entityType
         .GetDeclaredProperties()

@@ -48,6 +48,6 @@ public readonly record struct MySqlCompiledParameter
 
     /// <inheritdoc/>
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    public void Store(ref DbParameter param, object context) => 
+    public void Store(ref DbParameter param, object context) =>
         Setter!.Invoke(context, param.Value!);
 }

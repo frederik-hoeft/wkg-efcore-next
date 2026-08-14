@@ -1,4 +1,4 @@
-using System.Buffers.Binary;
+﻿using System.Buffers.Binary;
 using System.Diagnostics;
 using System.Numerics;
 using System.Runtime.CompilerServices;
@@ -187,7 +187,7 @@ public struct Uuid : IEqualityOperators<Uuid, Uuid, bool>, IEquatable<Uuid>
     /// <summary>
     /// Returns a 36-character string that represents the current <see cref="Uuid"/> object.
     /// </summary>
-    public readonly override string ToString()
+    public override readonly string ToString()
     {
         // allocate enough bytes to store Uuid ASCII string
         Span<byte> result = stackalloc byte[36];
@@ -351,7 +351,7 @@ public struct Uuid : IEqualityOperators<Uuid, Uuid, bool>, IEquatable<Uuid>
         (byte)(b + 0x30 + (0x27 & ~((b - 0xA) >> 31)));
 
     [MethodImpl(MethodImplOptions.AggressiveInlining)]
-    private static int UnhexlifyAsciiNibble(int ascii) => 
+    private static int UnhexlifyAsciiNibble(int ascii) =>
         ((ascii & 0xF) + (ascii >> 6)) | ((ascii >> 3) & 0x8);
 
     /// <summary>
@@ -394,7 +394,7 @@ public struct Uuid : IEqualityOperators<Uuid, Uuid, bool>, IEquatable<Uuid>
     public static bool operator !=(Uuid left, Uuid right) => !(left == right);
 
     /// <inheritdoc/>
-    public readonly override bool Equals(object? obj) => obj is Uuid uuid && Equals(uuid);
+    public override readonly bool Equals(object? obj) => obj is Uuid uuid && Equals(uuid);
 
     /// <inheritdoc/>
     public override int GetHashCode()

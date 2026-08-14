@@ -1,4 +1,4 @@
-using System.Reflection;
+﻿using System.Reflection;
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Tests.Model.Discovery;

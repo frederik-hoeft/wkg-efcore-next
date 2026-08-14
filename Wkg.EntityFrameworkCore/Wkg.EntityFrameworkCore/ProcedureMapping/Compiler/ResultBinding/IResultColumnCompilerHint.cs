@@ -11,12 +11,12 @@ public interface IResultColumnCompilerHint
     /// <summary>
     /// Specifies the expression used to read the value of the column from the <see cref="DbDataReader"/>.
     /// </summary>
-    public Expression ReaderGetExpression { get; }
+    Expression ReaderGetExpression { get; }
 
     /// <summary>
     /// Specifies the type of the value read from the <see cref="DbDataReader"/>.
     /// </summary>
-    public Type ReaderResultType { get; }
+    Type ReaderResultType { get; }
 
     /// <summary>
     /// Specifies the automatically determined expression used to convert the value read from the <see cref="DbDataReader"/> to the CLR type of the result column.
@@ -29,5 +29,5 @@ public interface IResultColumnCompilerHint
     /// The automatic conversion may be overridden by a user-supplied conversion expression.
     /// </para>
     /// </remarks>
-    public Expression? AutoConversion { get; }
+    Expression? AutoConversion { get; }
 }

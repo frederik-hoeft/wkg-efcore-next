@@ -1,4 +1,4 @@
-using Microsoft.CodeAnalysis;
+﻿using Microsoft.CodeAnalysis;
 using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Emitters;

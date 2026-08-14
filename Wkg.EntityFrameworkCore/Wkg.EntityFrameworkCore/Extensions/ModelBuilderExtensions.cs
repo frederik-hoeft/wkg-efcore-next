@@ -1,13 +1,13 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using System.Diagnostics.CodeAnalysis;
 using Wkg.EntityFrameworkCore.Configuration;
-using Wkg.EntityFrameworkCore.Configuration.Reflection;
-using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Policies;
-using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.EntityNamingPolicies;
-using System.Diagnostics.CodeAnalysis;
+using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
+using Wkg.EntityFrameworkCore.Configuration.Reflection;
+using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Extensions;
 
@@ -85,7 +85,7 @@ public static class ModelBuilderExtensions
         /// <typeparam name="TModel">The type of the model.</typeparam>
         /// <typeparam name="TDataSeed">The type of the data seed.</typeparam>
         /// <returns>The model builder.</returns>
-        public ModelBuilder LoadDataSeed<TModel, TDataSeed>() 
+        public ModelBuilder LoadDataSeed<TModel, TDataSeed>()
             where TModel : class, IModelConfiguration<TModel>
             where TDataSeed : IModelDataSeed<TModel>
         {
@@ -113,7 +113,7 @@ public static class ModelBuilderExtensions
             PropertyMapping.AddDefaults(policyOptionsBuilder);
 
             IEntityPolicy[] policies = policyOptionsBuilder.Build();
-            IEntityDiscoveryContext discoveryContext = optionsBuilder.DiscoveryContextFactory?.Invoke(policies) 
+            IEntityDiscoveryContext discoveryContext = optionsBuilder.DiscoveryContextFactory?.Invoke(policies)
                 ?? new EntityDiscoveryContext(policies);
             loader.LoadModels(self, discoveryContext);
             discoveryContext.AuditPolicies();

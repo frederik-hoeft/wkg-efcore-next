@@ -1,4 +1,4 @@
-using Wkg.EntityFrameworkCore.Configuration.Reflection.Attributes;
+﻿using Wkg.EntityFrameworkCore.Configuration.Reflection.Attributes;
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 
 namespace Wkg.EntityFrameworkCore.MySql.Configuration;
