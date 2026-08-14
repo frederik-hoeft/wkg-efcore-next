@@ -16,7 +16,7 @@ public interface IThrowHelper
     /// <param name="message">The message that describes the error.</param>
     [DoesNotReturn]
     [StackTraceHidden]
-void Throw<TException>(string message) where TException : Exception, new();
+    void Throw<TException>(string message) where TException : Exception, new();
 
     /// <summary>
     /// Throws an exception of type <typeparamref name="TException"/> with the specified <paramref name="message"/> and expected return type <typeparamref name="T"/>.
@@ -27,7 +27,7 @@ void Throw<TException>(string message) where TException : Exception, new();
     /// <returns>never</returns>
     [DoesNotReturn]
     [StackTraceHidden]
-T Throw<TException, T>(string message) where TException : Exception, new();
+    T Throw<TException, T>(string message) where TException : Exception, new();
 
     /// <summary>
     /// Throws an <see cref="ArgumentException"/> of type <typeparamref name="TArgumentException"/> with the specified <paramref name="message"/> and <paramref name="paramName"/>.
@@ -37,7 +37,7 @@ T Throw<TException, T>(string message) where TException : Exception, new();
     /// <param name="paramName">The name of the parameter that caused the current exception.</param>
     [DoesNotReturn]
     [StackTraceHidden]
-void Throw<TArgumentException>(string message, string paramName) where TArgumentException : ArgumentException, new();
+    void Throw<TArgumentException>(string message, string paramName) where TArgumentException : ArgumentException, new();
 
     /// <summary>
     /// Throws an <see cref="ArgumentException"/> of type <typeparamref name="TArgumentException"/> with the specified <paramref name="message"/>, <paramref name="paramName"/>, and expected return type <typeparamref name="T"/>.
@@ -49,7 +49,7 @@ void Throw<TArgumentException>(string message, string paramName) where TArgument
     /// <returns>never</returns>
     [DoesNotReturn]
     [StackTraceHidden]
-T Throw<TArgumentException, T>(string message, string paramName) where TArgumentException : ArgumentException, new();
+    T Throw<TArgumentException, T>(string message, string paramName) where TArgumentException : ArgumentException, new();
 
     /// <summary>
     /// Logs a warning <paramref name="message"/> in the current context to the configured <see cref="Log.CurrentLogger"/>.
