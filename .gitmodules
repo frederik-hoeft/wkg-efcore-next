@@ -1,0 +1,3 @@
+[submodule "docs/external/roslyn-patterns"]
+	path = docs/external/roslyn-patterns
+	url = https://github.com/frederik-hoeft/roslyn-patterns.git
