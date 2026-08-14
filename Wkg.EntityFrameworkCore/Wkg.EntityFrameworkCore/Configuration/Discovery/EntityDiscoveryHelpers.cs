@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration.Discovery;
 
@@ -10,6 +12,7 @@ namespace Wkg.EntityFrameworkCore.Configuration.Discovery;
 /// during the model discovery process. These methods are typically used internally
 /// by model loaders and configuration systems and should not be called directly in application code.
 /// </remarks>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.EntityDiscoveryHelpers)]
 public static class EntityDiscoveryHelpers
 {
     /// <summary>

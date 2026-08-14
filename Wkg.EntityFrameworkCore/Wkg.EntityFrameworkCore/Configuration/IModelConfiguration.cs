@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration;
 
@@ -12,6 +13,7 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// This interface must be implemented by the entity to be configured.
 /// </para>
 /// </remarks>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.ModelConfiguration)]
 public interface IModelConfiguration<T> where T : class, IModelConfiguration<T>
 {
     /// <summary>

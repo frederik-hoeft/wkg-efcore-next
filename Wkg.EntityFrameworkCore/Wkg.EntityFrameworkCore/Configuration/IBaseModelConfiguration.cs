@@ -1,5 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration;
 
@@ -7,6 +8,7 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// Represents a configuration for an abstract base model when using Table-Per-Concrete-Type (TPC) inheritance.
 /// </summary>
 /// <typeparam name="TParentClass">The type of the parent class.</typeparam>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.BaseModelConfiguration)]
 public interface IBaseModelConfiguration<TParentClass> where TParentClass : class, IBaseModelConfiguration<TParentClass>
 {
     /// <summary>

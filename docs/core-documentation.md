@@ -1,4 +1,4 @@
-# `Wkg.EntityFrameworkCore` Documentation
+﻿# `Wkg.EntityFrameworkCore` Documentation
 
 `Wkg.EntityFrameworkCore` is a library that provides reflective entity configuration and procedure mapping for Entity Framework Core, as well as other re-usable components not directly related to [RECAP](./RECAP-paper.pdf).
 
@@ -193,7 +193,9 @@ public class MyDbContext : DbContext
 
 ##### Source-Generator Discovery
 
-For build-time discovery without runtime reflection, a Roslyn source generator can generate an `IModelLoader` implementation that loads your entities, base configurations, connections, and data seeds. This improves startup performance and provides compile-time diagnostics.
+For build-time discovery without runtime reflection, the `Wkg.EntityFrameworkCore.SourceGeneration` analyzer package contains the discovery generator under the `Wkg.EntityFrameworkCore.SourceGeneration.Discovery` namespace. It generates an `IModelLoader` implementation that loads entities, base configurations, connections, and data seeds. This improves startup performance and provides compile-time diagnostics.
+
+The analyzer uses canonical embedded source for its small compile-time protocols: the same attribute and contract declarations are compiled into the analyzer and embedded for injection into consuming compilations. A shared analyzer-level bootstrap emits the generic contract-registration protocol once, while the discovery generator emits only its own trigger/filter declarations and contract vocabulary. Runtime-owned discovery types register semantic source-generation contracts in `Wkg.EntityFrameworkCore`; the generator resolves those registrations from Roslyn symbols and emits against the resolved types rather than hard-coded WKG metadata names. This keeps the analyzer independent of a normal runtime assembly reference while making missing, duplicate, or incompatible contract providers compile-time failures.
 
 To use it:
 
@@ -204,7 +206,7 @@ To use it:
 Example:
 
 ```csharp
-using Wkg.EntityFrameworkCore.Discovery.SourceGeneration;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery;
 
 [ModelLoader(
     AssemblyDiscoveryFailureBehavior = AssemblyDiscoveryFailureBehavior.Warning,
@@ -251,11 +253,16 @@ The source generator provides compile-time diagnostics for common issues. All di
 
 | Diagnostic ID | Category | Title | Description |
 |---------------|----------|-------|-------------|
-| `WKGLIBEFC001` | Compatibility | Incompatible assembly version. | Source generator 'Wkg.EntityFrameworkCore.Discovery.SourceGeneration' must have the same version as 'Wkg.EntityFrameworkCore' to ensure compatibility. 'Wkg.EntityFrameworkCore.Discovery.SourceGeneration' has version '{0}', but expected version was '{1}' from 'Wkg.EntityFrameworkCore'.<br>Ensures that the source generator 'Wkg.EntityFrameworkCore.Discovery.SourceGeneration' and the dependent assembly 'Wkg.EntityFrameworkCore' have matching versions to prevent code generation issues due to API mismatches. |
-| `WKGLIBEFC002` | Compatibility | Missing target assembly for model discovery. | Target assembly '{0}' specified in the ModelLoaderAttribute could not be found in the compilation. Ensure that the assembly name is correct and that the assembly is referenced by the project. |
+| `WKGLIBEFC001` | Compatibility | Incompatible assembly version. | Source generator 'Wkg.EntityFrameworkCore.SourceGeneration' must have the same version as 'Wkg.EntityFrameworkCore' to ensure compatibility. 'Wkg.EntityFrameworkCore.SourceGeneration' has version '{0}', but expected version was '{1}' from 'Wkg.EntityFrameworkCore'.<br>Ensures that the source generator 'Wkg.EntityFrameworkCore.SourceGeneration' and the dependent assembly 'Wkg.EntityFrameworkCore' have matching versions to prevent code generation issues due to API mismatches. |
+| `WKGLIBEFC002` | ModelDiscovery | Missing target assembly for model discovery. | Target assembly '{0}' specified in the ModelLoaderAttribute could not be found in the compilation. Ensure that the assembly name is correct and that the assembly is referenced by the project. |
 | `WKGLIBEFC003` | Usage | Invalid model discovery filter attribute. | The model discovery filter attribute provided as type argument `T` to `ModelDiscoveryFilterAttribute<T>` does not derive from `DatabaseEngineModelAttribute`. |
 | `WKGLIBEFC004` | Design | No discoverable models found. | None of the target assemblies contain any classes implementing `IDiscoverableModelConfiguration<T>`, `IDiscoverableModelConnection<TConnection, TLeft, TRight>`, or `IDiscoverableModelDataSeed<TModel>`. This may indicate a misconfiguration of the source generator. |
 | `WKGLIBEFC005` | Design | No discoverable models found in assembly. | The explicitly specified target assembly '{0}' does not contain any classes implementing `IDiscoverableModelConfiguration<T>`, `IDiscoverableModelConnection<TConnection, TLeft, TRight>`, or `IDiscoverableModelDataSeed<TModel>`. This may indicate a misconfiguration of the source generator. |
+| `WKGLIBEFC006` | SourceGenerationContracts | Malformed model discovery source-generation contract registration. | A runtime type contains a malformed registration for the model-discovery contract protocol. |
+| `WKGLIBEFC007` | SourceGenerationContracts | Model discovery source-generation contract is registered more than once. | A required semantic role resolves to multiple provider types and generation is stopped. |
+| `WKGLIBEFC008` | SourceGenerationContracts | Required model discovery source-generation contract is missing. | A required runtime role is not registered by the referenced runtime assemblies. |
+| `WKGLIBEFC009` | SourceGenerationContracts | Model discovery source-generation contract has an invalid type shape. | A registered provider has the wrong type kind or generic arity for its semantic role. |
+| `WKGLIBEFC010` | Compatibility | Missing dependent assembly. | `Wkg.EntityFrameworkCore` is not present in the compilation, so the source generator cannot resolve its runtime contracts. |
 
 ##### Manual Entity Registration
 

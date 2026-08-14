@@ -8,7 +8,7 @@ variables:
   PROJECT_ROOT: "Wkg.EntityFrameworkCore"
   LIBRARY_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore/Wkg.EntityFrameworkCore.csproj"
   TEST_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Tests/Wkg.EntityFrameworkCore.Tests.csproj"
-  ANALYZER_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.csproj"
+  ANALYZER_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.SourceGeneration/Wkg.EntityFrameworkCore.SourceGeneration.csproj"
   MAJOR_VERSION: "10"
   MINOR_VERSION: "0"
 
@@ -55,4 +55,4 @@ deploy-analyzer-public:
   extends: .deploy-nuget-public
   variables:
     PROJECT_FILE_PATH: "${ANALYZER_FILE_PATH}"
-    DOTNET_CI_VERSION_FILE: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/WkgEntityFrameworkCoreDiscoverySourceGeneration.cs"
+    DOTNET_CI_VERSION_FILE: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.SourceGeneration/WkgEntityFrameworkCoreSourceGeneration.cs"

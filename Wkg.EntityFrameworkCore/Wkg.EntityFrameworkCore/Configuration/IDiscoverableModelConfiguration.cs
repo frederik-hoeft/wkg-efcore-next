@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.Extensions;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration;
 
@@ -13,4 +15,5 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// This interface must be implemented by the entity to be configured.
 /// </para>
 /// </remarks>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.DiscoverableModelConfiguration)]
 public interface IDiscoverableModelConfiguration<T> : IModelConfiguration<T> where T : class, IDiscoverableModelConfiguration<T>;

@@ -1,15 +1,13 @@
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Internal;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System.Reflection;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Policies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.EntityNamingPolicies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
-using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 using Wkg.EntityFrameworkCore.Extensions;
-using Wkg.EntityFrameworkCore.Tests.Discovery.TestData;
+using Wkg.EntityFrameworkCore.Tests.Model.Discovery;
+using Wkg.EntityFrameworkCore.Tests.Model.Discovery.Entities;
 
 namespace Wkg.EntityFrameworkCore.Tests.Discovery.Reflection;
 
@@ -291,17 +289,12 @@ public sealed class ReflectiveModelDiscoveryIntegrationTests
 
             modelBuilder.LoadReflectiveModels(options => options
                 .ConfigureDiscovery(discovery => discovery
-                    .AddTargetAssembly<ThisAssembly>()
+                    .AddTargetAssembly<ModelAssembly>()
                     .UseDiscoveryContextFactory(discoveryContextFactoryProvider.CreateContext))
                 .ConfigurePolicies(policies => policies
                     .AddEntityNamingPolicy(EntityNamingPolicy.AllowImplicit)
                     .AddPropertyMappingPolicy(PropertyMappingPolicy.AllowImplicit)));
         }
-    }
-
-    private sealed class ThisAssembly : ITargetAssembly
-    {
-        public static Assembly Assembly => typeof(ThisAssembly).Assembly;
     }
 
     private sealed class TestDiscoveryContextFactoryProvider

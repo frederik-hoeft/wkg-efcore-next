@@ -1,6 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.Extensions;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration;
 
@@ -10,6 +12,7 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// <typeparam name="TConnection">The type of the implementing connection entity.</typeparam>
 /// <typeparam name="TLeft">The type of the left entity.</typeparam>
 /// <typeparam name="TRight">The type of the right entity.</typeparam>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.DiscoverableModelConnection)]
 public interface IDiscoverableModelConnection<TConnection, TLeft, TRight> : IModelConnection<TConnection, TLeft, TRight>
     where TConnection : class, IDiscoverableModelConnection<TConnection, TLeft, TRight>
     where TLeft : class, IDiscoverableModelConfiguration<TLeft>

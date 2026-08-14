@@ -1,6 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using System.Diagnostics.CodeAnalysis;
+using Microsoft.EntityFrameworkCore;
 using Wkg.EntityFrameworkCore.Configuration.Discovery;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration;
 
@@ -11,6 +12,7 @@ namespace Wkg.EntityFrameworkCore.Configuration;
 /// Implementations of this interface are responsible for discovering and applying entity model configurations
 /// to the Entity Framework Core model builder during the model creation process.
 /// </remarks>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.ModelLoader)]
 public interface IModelLoader
 {
     /// <summary>

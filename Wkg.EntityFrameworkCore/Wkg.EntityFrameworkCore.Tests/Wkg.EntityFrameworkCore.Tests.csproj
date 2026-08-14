@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
         <TargetFramework>net10.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
@@ -21,7 +21,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <ProjectReference Include="..\Wkg.EntityFrameworkCore.Tests.Model\Wkg.EntityFrameworkCore.Tests.Model.csproj" />
         <ProjectReference Include="..\Wkg.EntityFrameworkCore\Wkg.EntityFrameworkCore.csproj" />
-        <ProjectReference Include="..\Wkg.EntityFrameworkCore.Discovery.SourceGeneration\Wkg.EntityFrameworkCore.Discovery.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
     </ItemGroup>
 </Project>

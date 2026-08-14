@@ -1,11 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Wkg.EntityFrameworkCore.Configuration.Policies;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery.Contracts;
 
 namespace Wkg.EntityFrameworkCore.Configuration.Discovery;
 
 /// <summary>
 /// A context for entity discovery that can be used to enforce naming and mapping policies on discovered entities.
 /// </summary>
+[GeneratorContractRegistration<ModelDiscoveryContract>(ModelDiscoveryContract.EntityDiscoveryContext)]
 public interface IEntityDiscoveryContext
 {
     internal IReadOnlyDictionary<Type, EntityTypeBuilder> EntityBuilderCache { get; }

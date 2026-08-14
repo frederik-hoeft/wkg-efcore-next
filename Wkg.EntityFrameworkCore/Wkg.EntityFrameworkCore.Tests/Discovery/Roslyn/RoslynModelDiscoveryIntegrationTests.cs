@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Wkg.Common.Extensions;
@@ -7,12 +7,13 @@ using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.EntityNamingPolicies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
 using Wkg.EntityFrameworkCore.Extensions;
-using Wkg.EntityFrameworkCore.Tests.Discovery.TestData;
+using Wkg.EntityFrameworkCore.Tests.Model.Discovery;
+using Wkg.EntityFrameworkCore.Tests.Model.Discovery.Entities;
 
 namespace Wkg.EntityFrameworkCore.Tests.Discovery.Roslyn;
 
 [TestClass]
-public class RoslynModelDiscoveryIntegrationTests
+public sealed class RoslynModelDiscoveryIntegrationTests
 {
     private DbContextOptions<TestDbContext> _dbContextOptions = null!;
 

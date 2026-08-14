@@ -3,9 +3,10 @@
     <File Path=".editorconfig" />
     <File Path="Directory.Build.props" />
   </Folder>
-  <Project Path="Wkg.EntityFrameworkCore.Discovery.SourceGeneration/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.csproj" />
   <Project Path="Wkg.EntityFrameworkCore.MySql/Wkg.EntityFrameworkCore.MySql.csproj" />
   <Project Path="Wkg.EntityFrameworkCore.Oracle/Wkg.EntityFrameworkCore.Oracle.csproj" />
+  <Project Path="Wkg.EntityFrameworkCore.SourceGeneration/Wkg.EntityFrameworkCore.SourceGeneration.csproj" />
+  <Project Path="Wkg.EntityFrameworkCore.Tests.Model/Wkg.EntityFrameworkCore.Tests.Model.csproj" Id="c130cd46-c24b-425e-a647-eec1766f83a9" />
   <Project Path="Wkg.EntityFrameworkCore.Tests/Wkg.EntityFrameworkCore.Tests.csproj" />
   <Project Path="Wkg.EntityFrameworkCore/Wkg.EntityFrameworkCore.csproj" />
 </Solution>

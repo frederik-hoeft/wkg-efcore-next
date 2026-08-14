@@ -1,4 +1,4 @@
-# WKG Entity Framework Core
+﻿# WKG Entity Framework Core
 
 [![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore)![NuGet downloads (Wkg.EntityFrameworkCore)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore/)  
 [![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.Discovery.SourceGeneration)![NuGet downloads (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.Discovery.SourceGeneration?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/)  
@@ -34,7 +34,7 @@ Install the `Wkg.EntityFrameworkCore` package by adding the following package re
     <!-- Optional: If you want to use source generation for model discovery,
     add the following package reference as well. Major and minor versions must
     match the Wkg.EntityFrameworkCore package version. -->
-    <PackageReference Include="Wkg.EntityFrameworkCore.Discovery.SourceGeneration" Version="X.X.X" />
+    <PackageReference Include="Wkg.EntityFrameworkCore.SourceGeneration" Version="X.X.X" />
 </ItemGroup>
 ```
 

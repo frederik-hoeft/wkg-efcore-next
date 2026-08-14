@@ -1,4 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Wkg.EntityFrameworkCore.Configuration;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
@@ -7,7 +7,6 @@ using Wkg.EntityFrameworkCore.Configuration.Discovery;
 using Wkg.EntityFrameworkCore.Configuration.Policies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.EntityNamingPolicies;
-using Wkg.EntityFrameworkCore.Configuration.Policies.Builder;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Wkg.EntityFrameworkCore.Extensions;

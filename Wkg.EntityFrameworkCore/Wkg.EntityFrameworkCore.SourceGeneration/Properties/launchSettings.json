@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "Tests": {
+      "commandName": "DebugRoslynComponent",
+      "targetProject": "..\\Wkg.EntityFrameworkCore.Tests.Model\\Wkg.EntityFrameworkCore.Tests.Model.csproj"
+    }
+  }
+}
