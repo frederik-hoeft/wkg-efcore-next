@@ -1,0 +1,58 @@
+stages:
+  - build
+  - test
+  - increase-version
+  - deploy-baget
+
+variables:
+  PROJECT_ROOT: "Wkg.EntityFrameworkCore"
+  LIBRARY_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore/Wkg.EntityFrameworkCore.csproj"
+  TEST_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Tests/Wkg.EntityFrameworkCore.Tests.csproj"
+  ANALYZER_FILE_PATH: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.csproj"
+  MAJOR_VERSION: "10"
+  MINOR_VERSION: "0"
+
+include:
+  - project: 'wkg/gitlab-templates'
+    ref: 'analyzer-deployment-target'
+    file:
+      - '/jobs/build_dotnet_10.yml'
+      - '/jobs/test_dotnet_10.yml'
+      - '/jobs/increase_version.yml'
+      - '/jobs/deploy_nuget_dotnet_10.yml'
+
+build-library:
+  extends: .build
+  variables:
+    PROJECT_FILE_PATH: "${LIBRARY_FILE_PATH}"
+
+build-analyzer:
+  extends: .build
+  variables:
+    PROJECT_FILE_PATH: "${ANALYZER_FILE_PATH}"
+
+test-library:
+  extends: .test
+  variables:
+    TEST_PROJECT_FILE_PATH: "${TEST_FILE_PATH}"
+
+increase-version:
+  extends: .increase-version
+  only:
+    - main
+    - master
+    - /^rc-.*$/
+    - /^dev-.*$/ 
+    - /^diag-.*$/
+
+deploy-library-public:
+  extends: .deploy-nuget-public
+  variables:
+    PROJECT_FILE_PATH: "${LIBRARY_FILE_PATH}"
+    DOTNET_CI_VERSION_FILE: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore/WkgEntityFrameworkCore.cs"
+
+deploy-analyzer-public:
+  extends: .deploy-nuget-public
+  variables:
+    PROJECT_FILE_PATH: "${ANALYZER_FILE_PATH}"
+    DOTNET_CI_VERSION_FILE: "${PROJECT_ROOT}/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/WkgEntityFrameworkCoreDiscoverySourceGeneration.cs"
