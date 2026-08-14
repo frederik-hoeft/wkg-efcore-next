@@ -63,8 +63,8 @@ Depending on the intended use, the following requirements apply:
 - **Using the procedure mapping features of RECAP:**
   - The requirements listed above.
   - The RECAP database provider package corresponding to the database provider used by the application. Currently supported providers are:
-    - Oracle: [Wkg.EntityFrameworkCore.Oracle](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-oracle)
-    - MySQL: [Wkg.EntityFrameworkCore.MySQL](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-mysql)
+    - Oracle: [Wkg.EntityFrameworkCore.Oracle](oracle-documentation.md)
+    - MySQL: [Wkg.EntityFrameworkCore.MySQL](mysql-documentation.md)
 
 ### Installation
 

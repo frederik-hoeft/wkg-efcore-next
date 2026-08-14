@@ -1,7 +1,9 @@
 # WKG Entity Framework Core
 
 [![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore)![NuGet downloads (Wkg.EntityFrameworkCore)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore/)  
-[![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.Discovery.SourceGeneration)![NuGet downloads (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.Discovery.SourceGeneration?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/)
+[![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Discovery.SourceGeneration.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.Discovery.SourceGeneration)![NuGet downloads (Wkg.EntityFrameworkCore.Discovery.SourceGeneration)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.Discovery.SourceGeneration?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Discovery.SourceGeneration/)  
+[![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.MySql.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.MySql)![NuGet downloads (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.MySql?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/)  
+[![NuGet](https://img.shields.io/badge/NuGet-555555?style=for-the-badge&logo=nuget)![NuGet version (Wkg.EntityFrameworkCore.Oracle)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Oracle.svg?style=for-the-badge&label=Wkg.EntityFrameworkCore.Oracle)![NuGet downloads (Wkg.EntityFrameworkCore.Oracle)](https://img.shields.io/nuget/dt/Wkg.EntityFrameworkCore.Oracle?style=for-the-badge)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Oracle/)
 
 
 ---
@@ -17,10 +19,10 @@ As part of our commitment to open-source software, we are making this library [a
 
 ---
 
-This repository contains the database-independant core components of the RECAP framework as well as other re-usable components not directly related to RECAP. For database-specific implementations of RECAP, required for stored procedure mapping, see the following repositories:
+This repository contains the core components of the RECAP framework as well as other re-usable components not directly related to RECAP. Database-specific RECAP providers for stored procedure mapping are also included in this repository:
 
-[![GitHub (Wkg.EntityFrameworkCore.Oracle)](https://img.shields.io/badge/GitHub-WKG_Entity_Framework_Core_--_Oracle-blue?style=flat-square&logo=github)](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-oracle)[![NuGet version (Wkg.EntityFrameworkCore.Oracle)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Oracle.svg?style=flat-square&logo=nuget&label=&color=555555)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Oracle/)  
-[![GitHub (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/badge/GitHub-WKG_Entity_Framework_Core_--_MySQL-blue?style=flat-square&logo=github)](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core-mysql)[![NuGet version (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.MySql.svg?style=flat-square&logo=nuget&label=&color=555555)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/)
+[![NuGet version (Wkg.EntityFrameworkCore.Oracle)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.Oracle.svg?style=flat-square&logo=nuget&label=Wkg.EntityFrameworkCore.Oracle&color=555555)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.Oracle/) — [documentation](docs/oracle-documentation.md)  
+[![NuGet version (Wkg.EntityFrameworkCore.MySql)](https://img.shields.io/nuget/v/Wkg.EntityFrameworkCore.MySql.svg?style=flat-square&logo=nuget&label=Wkg.EntityFrameworkCore.MySql&color=555555)](https://www.nuget.org/packages/Wkg.EntityFrameworkCore.MySql/) — [documentation](docs/mysql-documentation.md)
 
 ## Installation
 
@@ -39,8 +41,19 @@ Install the `Wkg.EntityFrameworkCore` package by adding the following package re
 > :warning: **Warning**
 > Replace `X.X.X` with the latest stable version available on the [nuget feed](https://www.nuget.org/packages/Wkg.EntityFrameworkCore), where **the major version must match the major version of your targeted .NET runtime**.
 
+To use the stored procedure mapping features of RECAP with a specific database provider, also install the corresponding provider package:
+
+```xml
+<ItemGroup>
+    <!-- MySQL provider -->
+    <PackageReference Include="Wkg.EntityFrameworkCore.MySql" Version="X.X.X" />
+    <!-- Oracle provider -->
+    <PackageReference Include="Wkg.EntityFrameworkCore.Oracle" Version="X.X.X" />
+</ItemGroup>
+```
+
 ## Conceptual Design and Usage
 
 For the full theoretical background and design principles of RECAP, please refer to the [RECAP paper](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core/blob/main/docs/RECAP-concept.pdf).
 
-For technical documentation and usage examples, please refer to the [documentation](https://github.com/WKG-Software-GmbH/wkg-entity-framework-core/blob/main/docs/documentation.md).
+For technical documentation and usage examples, please refer to the [documentation](docs/core-documentation.md).
