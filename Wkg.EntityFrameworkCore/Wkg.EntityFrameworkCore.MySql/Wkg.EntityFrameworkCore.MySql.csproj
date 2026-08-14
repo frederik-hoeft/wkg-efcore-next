@@ -2,8 +2,8 @@
 
     <!--.NET build settings-->
     <PropertyGroup>
-        <TargetFramework>net9.0</TargetFramework>
-        <LangVersion>13</LangVersion>
+        <TargetFramework>net10.0</TargetFramework>
+        <LangVersion>14</LangVersion>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <!-- versioning is done by the CI -->
@@ -41,9 +41,16 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Wkg" Version="[9.0.17748,9.1)" />
-        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[9.0.17995-dev,9.1)" />
-        <PackageReference Include="MySql.Data" Version="[9.2.0,10.0)" />
+        <PackageReference Include="Wkg" Version="[10.0.18957-rc,10.1)" />
+        <PackageReference Include="MySql.Data" Version="[26.7.0,27.0)" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' != 'Debug'">
+        <PackageReference Include="Wkg.EntityFrameworkCore" Version="[10.0,10.1)" />
+    </ItemGroup>
+
+    <ItemGroup Condition="'$(Configuration)' == 'Debug'">
+        <ProjectReference Include="..\Wkg.EntityFrameworkCore\Wkg.EntityFrameworkCore.csproj" />
     </ItemGroup>
 
     <ItemGroup>

@@ -1,10 +1,10 @@
-﻿using Wkg.EntityFrameworkCore.Configuration.Reflection;
+using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.MySql.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration.Reflection;
 
-internal class MySqlReflectiveProcedureLoader : ReflectiveProcedureLoader
+internal sealed class MySqlReflectiveProcedureLoader : ReflectiveProcedureLoader
 {
     protected override StoredPrecedureLoaderOptions Options { get; } = new
     (

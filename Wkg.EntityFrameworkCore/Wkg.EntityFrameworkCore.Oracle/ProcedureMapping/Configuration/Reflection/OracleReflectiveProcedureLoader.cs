@@ -1,10 +1,10 @@
-﻿using Wkg.EntityFrameworkCore.Configuration.Reflection;
+using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.Oracle.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Configuration.Reflection;
 
-internal class OracleReflectiveProcedureLoader : ReflectiveProcedureLoader
+internal sealed class OracleReflectiveProcedureLoader : ReflectiveProcedureLoader
 {
     protected override StoredPrecedureLoaderOptions Options => new
     (

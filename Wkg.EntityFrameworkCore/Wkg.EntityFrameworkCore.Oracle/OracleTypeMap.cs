@@ -1,10 +1,10 @@
-﻿using Oracle.ManagedDataAccess.Client;
+using Oracle.ManagedDataAccess.Client;
 using Oracle.ManagedDataAccess.Types;
 using System.Collections.Frozen;
 
 namespace Wkg.EntityFrameworkCore.Oracle;
 
-internal class OracleTypeMap : DbTypeMap<OracleDbType>
+internal sealed class OracleTypeMap : DbTypeMap<OracleDbType>
 {
     protected override FrozenDictionary<Type, OracleDbType> TypeMap { get; } = new Dictionary<Type, OracleDbType>
     {

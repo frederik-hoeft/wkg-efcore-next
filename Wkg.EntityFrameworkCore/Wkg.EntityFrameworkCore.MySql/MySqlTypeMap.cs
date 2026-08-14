@@ -1,9 +1,9 @@
-﻿using MySql.Data.MySqlClient;
+using MySql.Data.MySqlClient;
 using System.Collections.Frozen;
 
 namespace Wkg.EntityFrameworkCore.MySql;
 
-internal class MySqlTypeMap : DbTypeMap<MySqlDbType>
+internal sealed class MySqlTypeMap : DbTypeMap<MySqlDbType>
 {
     protected override FrozenDictionary<Type, MySqlDbType> TypeMap { get; } = new Dictionary<Type, MySqlDbType>
     {

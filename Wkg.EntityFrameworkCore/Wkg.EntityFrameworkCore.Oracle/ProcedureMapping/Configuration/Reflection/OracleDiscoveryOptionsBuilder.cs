@@ -1,5 +1,5 @@
-﻿using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
+using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Configuration.Reflection;
 
-internal class OracleDiscoveryOptionsBuilder : DiscoveryOptionsBuilder;
+internal sealed class OracleDiscoveryOptionsBuilder : DiscoveryOptionsBuilder;

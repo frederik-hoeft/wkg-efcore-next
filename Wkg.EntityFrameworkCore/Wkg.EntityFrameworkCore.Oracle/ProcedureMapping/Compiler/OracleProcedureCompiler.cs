@@ -1,11 +1,11 @@
-﻿using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler;
 
-internal class OracleProcedureCompiler(IOracleProcedureBuilder builder, Type procedureType) 
+internal sealed class OracleProcedureCompiler(IOracleProcedureBuilder builder, Type procedureType) 
     : ProcedureCompiler<IOracleProcedureBuilder>(builder, procedureType), IProcedureCompiler<OracleCompiledParameter>
 {
     public ICompiledProcedure Compile(OracleCompiledParameter[] compiledParameters, CompiledResult? compiledResult)
