@@ -44,6 +44,7 @@
       - [Mapping a Database Function](#mapping-a-database-function)
       - [Mapping a Stored Procedure](#mapping-a-stored-procedure)
     - [PCO Discovery](#pco-discovery)
+      - [Source-Generated Procedure Plans (AOT)](#source-generated-procedure-plans-aot)
   - [Executing PCOs](#executing-pcos)
 
 <!-- /code_chunk_output -->
@@ -1461,6 +1462,24 @@ class MyDbContext : DbContext
     }
 }
 ```
+
+##### Source-Generated Procedure Plans (AOT)
+
+The same `Configure(...)` fluent API is the declaration surface for compile-time execution plans. The Core source generator interprets a **restricted declarative subset** of that API (no local state, no control flow) and emits a static `IProcedureExecutionPlan` that calls provider-owned runtime intrinsics. `Configure` is not executed at runtime when a generated plan is registered.
+
+`Configure` methods that use `if`, loops, or non-constant arguments produce compile-time diagnostics (`WKGLIBEFC011`–`WKGLIBEFC025`) rather than falling back to runtime interpretation.
+
+The existing `[ModelLoader]` type also implements `IProcedurePlanLoader`. Register generated plans before executing procedures:
+
+```csharp
+IModelLoader loader = new MyModelLoader();
+modelBuilder.LoadModels(loader);
+modelBuilder.LoadProcedurePlans((IProcedurePlanLoader)loader);
+```
+
+A module initializer in the declaring assembly also registers that assembly's plans when the module is loaded. `LoadProcedure` / `LoadReflectiveProcedures` skip IL compilation when a generated plan is already registered.
+
+The architecture, provider grammar protocol, and migration notes are documented in [aot-sproc-architecture.md](aot-sproc-architecture.md).
 
 ### Executing PCOs
 

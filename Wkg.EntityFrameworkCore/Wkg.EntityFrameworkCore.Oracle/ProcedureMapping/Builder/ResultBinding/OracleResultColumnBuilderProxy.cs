@@ -1,5 +1,7 @@
 ﻿using Oracle.ManagedDataAccess.Client;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 
@@ -16,6 +18,7 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 /// Initializes a new instance of the <see cref="OracleResultColumnBuilderProxy{TResult, TProperty, TColumn}"/> class.
 /// </remarks>
 /// <param name="proxiedBuilder">The proxied builder.</param>
+[ProcedureGrammarScope(GrammarScopeKind.Column, typeof(OracleColumnIntrinsics), Initializer = nameof(OracleColumnIntrinsics.Create), Finalizer = nameof(OracleColumnIntrinsics.Read))]
 public class OracleResultColumnBuilderProxy<TResult, TProperty, TColumn>(OracleResultColumnBuilder<TResult, TProperty> proxiedBuilder)
     : TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, OracleResultColumnBuilder<TResult, TProperty>,
         OracleResultColumnBuilderProxy<TResult, TProperty, TColumn>>(proxiedBuilder), IOracleResultColumnBuilder

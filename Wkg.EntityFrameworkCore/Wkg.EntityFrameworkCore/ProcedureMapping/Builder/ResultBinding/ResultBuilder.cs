@@ -2,6 +2,7 @@
 using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 
@@ -94,6 +95,7 @@ public abstract class ResultBuilder<TResult, TDataReader, TResultBuilderImpl> : 
     /// Configures the stored procedure to return a collection of result entities (multiple rows).
     /// </summary>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.AsCollection)]
     public TResultBuilderImpl AsCollection()
     {
         IsCollection = true;
@@ -103,6 +105,7 @@ public abstract class ResultBuilder<TResult, TDataReader, TResultBuilderImpl> : 
     /// <summary>
     /// Configures the stored procedure to return a single result entity (single row).
     /// </summary>
+    [StructuralOperation(StructuralRole.AsSingle)]
     public TResultBuilderImpl AsSingle()
     {
         IsCollection = false;

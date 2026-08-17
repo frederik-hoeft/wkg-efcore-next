@@ -6,6 +6,7 @@ using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 using Wkg.Reflection.Extensions;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
@@ -24,6 +25,11 @@ public interface IProcedureBuilder
     /// Indicates whether the procedure is a database function.
     /// </summary>
     bool IsFunction { get; }
+
+    /// <summary>
+    /// The CLR type of the stored-procedure command object being configured.
+    /// </summary>
+    Type ProcedureClrType { get; }
 }
 
 /// <summary>
@@ -93,6 +99,11 @@ public abstract class ProcedureBuilder<TProcedure, TIOContainer, TCompiledParame
 
     bool IProcedureBuilder.IsFunction => IsFunctionValue;
 
+    /// <inheritdoc cref="IProcedureBuilder.ProcedureClrType"/>
+    protected Type ProcedureClrType { get; } = typeof(TProcedure);
+
+    Type IProcedureBuilder.ProcedureClrType => ProcedureClrType;
+
     /// <inheritdoc cref="IProcedureBuilder{TCompiledParameter, TDataReader}.ParameterBuilders"/>
     protected List<IParameterBuilder<TCompiledParameter>> ParameterBuilders { get; } = [];
 
@@ -108,6 +119,7 @@ public abstract class ProcedureBuilder<TProcedure, TIOContainer, TCompiledParame
     /// </summary>
     /// <param name="name">The name of the stored procedure.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.ToDatabaseProcedure)]
     public TProcedureBuilderImpl ToDatabaseProcedure(string name)
     {
         if (ProcedureName is not null)
@@ -123,6 +135,7 @@ public abstract class ProcedureBuilder<TProcedure, TIOContainer, TCompiledParame
     /// </summary>
     /// <param name="name">The name of the database function.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.ToDatabaseFunction)]
     public TProcedureBuilderImpl ToDatabaseFunction(string name)
     {
         if (ProcedureName is not null)
@@ -139,6 +152,7 @@ public abstract class ProcedureBuilder<TProcedure, TIOContainer, TCompiledParame
     /// </summary>
     /// <param name="isFunction"><see langword="true"/> if the stored procedure is a database function; otherwise, <see langword="false"/>.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.IsFunction)]
     public TProcedureBuilderImpl IsFunction(bool isFunction = true)
     {
         IsFunctionValue = isFunction;

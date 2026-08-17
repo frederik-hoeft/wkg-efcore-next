@@ -4,6 +4,8 @@ using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 
@@ -12,6 +14,7 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 /// </summary>
 /// <typeparam name="TResult">The type of the result collection.</typeparam>
 /// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
+[ProcedureGrammarScope(GrammarScopeKind.Column, typeof(OracleColumnIntrinsics), Initializer = nameof(OracleColumnIntrinsics.Create), Finalizer = nameof(OracleColumnIntrinsics.Read))]
 public class OracleResultColumnBuilder<TResult, TProperty>
     : ResultColumnBuilder<TResult, TProperty, OracleResultColumnBuilder<TResult, TProperty>>, IOracleResultColumnBuilder
 {
@@ -29,6 +32,7 @@ public class OracleResultColumnBuilder<TResult, TProperty>
     /// </summary>
     /// <param name="dbType">The <see cref="global::Oracle.ManagedDataAccess.Client.OracleDbType"/> to set.</param>
     /// <returns>The column builder for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.HasDbType))]
     public OracleResultColumnBuilder<TResult, TProperty> HasDbType(OracleDbType dbType)
     {
         if (OracleDbType is not null)

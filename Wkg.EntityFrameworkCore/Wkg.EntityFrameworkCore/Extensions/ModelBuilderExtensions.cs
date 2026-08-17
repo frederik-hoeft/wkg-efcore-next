@@ -8,6 +8,7 @@ using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.EntityNamingPolici
 using Wkg.EntityFrameworkCore.Configuration.Policies.Defaults.PropertyMappingPolicies;
 using Wkg.EntityFrameworkCore.Configuration.Reflection;
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Extensions;
 
@@ -91,6 +92,19 @@ public static class ModelBuilderExtensions
         {
             ArgumentNullException.ThrowIfNull(self);
             self.Entity<TModel>().HasData(TDataSeed.GetSeedData());
+            return self;
+        }
+
+        /// <summary>
+        /// Registers source-generated stored-procedure execution plans from <paramref name="loader"/>.
+        /// </summary>
+        /// <param name="loader">The generated procedure-plan loader.</param>
+        /// <returns>The model builder.</returns>
+        public ModelBuilder LoadProcedurePlans(IProcedurePlanLoader loader)
+        {
+            ArgumentNullException.ThrowIfNull(self);
+            ArgumentNullException.ThrowIfNull(loader);
+            loader.LoadProcedurePlans();
             return self;
         }
 

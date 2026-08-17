@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.Extensions;
 
@@ -20,6 +21,7 @@ public static class MySqlProcedureBuilderExtensions
     /// <param name="builder">The procedure builder.</param>
     /// <param name="parameterExpression">An lambda expression that identifies the property of the <typeparamref name="TIOContainer"/> that should be mapped to this parameter.</param>
     /// <returns>A new <see cref="MySqlParameterBuilder{TIOContainer, TParameter}"/> instance to configure the scalar return value parameter.</returns>
+    [StructuralOperation(StructuralRole.ReturnsScalar)]
     public static MySqlParameterBuilder<TIOContainer, TParameter> ReturnsScalar<TProcedure, TIOContainer, TParameter>(this MySqlProcedureBuilder<TProcedure, TIOContainer> builder, Expression<Func<TIOContainer, TParameter>> parameterExpression)
         where TProcedure : StoredProcedure<TIOContainer>, IMySqlStoredProcedure<TIOContainer>
         where TIOContainer : class

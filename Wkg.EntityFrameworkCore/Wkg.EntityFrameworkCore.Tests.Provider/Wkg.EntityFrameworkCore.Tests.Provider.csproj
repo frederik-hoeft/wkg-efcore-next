@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+        <IsPackable>false</IsPackable>
+        <RootNamespace>Wkg.EntityFrameworkCore.Tests.Provider</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Wkg.EntityFrameworkCore\Wkg.EntityFrameworkCore.csproj" />
+        <ProjectReference Include="..\Wkg.EntityFrameworkCore.SourceGeneration\Wkg.EntityFrameworkCore.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" Condition="'$(Configuration)' == 'Debug'">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+        </ProjectReference>
+    </ItemGroup>
+
+</Project>

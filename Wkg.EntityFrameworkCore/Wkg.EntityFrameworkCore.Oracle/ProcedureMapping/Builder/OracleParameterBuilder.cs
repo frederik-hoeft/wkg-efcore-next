@@ -6,6 +6,8 @@ using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 
@@ -14,6 +16,7 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 /// </summary>
 /// <typeparam name="TIOContainer">The type of the Input/Output container object used to pass arguments to and from the stored procedure.</typeparam>
 /// <typeparam name="TParameter">The CLR type of the parameter being mapped.</typeparam>
+[ProcedureGrammarScope(GrammarScopeKind.Parameter, typeof(OracleParameterIntrinsics), Initializer = nameof(OracleParameterIntrinsics.Create), Finalizer = nameof(OracleParameterIntrinsics.Finalize))]
 public class OracleParameterBuilder<TIOContainer, TParameter>
     : ParameterBuilder<
         TIOContainer,
@@ -44,6 +47,7 @@ public class OracleParameterBuilder<TIOContainer, TParameter>
     /// </summary>
     /// <param name="oracleDbType">The <see cref="global::Oracle.ManagedDataAccess.Client.OracleDbType"/> associated with the parameter of this MySQL procedure.</param>
     /// <returns>The current <see cref="OracleParameterBuilder{TIOContainer, TParameter}"/> instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleParameterIntrinsics), nameof(OracleParameterIntrinsics.HasDbType))]
     public OracleParameterBuilder<TIOContainer, TParameter> HasDbType(OracleDbType oracleDbType)
     {
         OracleDbType = oracleDbType;

@@ -6,6 +6,8 @@ using Wkg.EntityFrameworkCore.Extensions;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.Extensions;
 
@@ -21,6 +23,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsBoolean))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, bool> GetAsBoolean<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Boolean);
@@ -35,6 +38,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsJson))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, object> GetAsJson<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Json);
@@ -52,6 +56,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsByte))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, byte> GetAsByte<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Byte);
@@ -66,6 +71,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsBytes))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, byte[]> GetAsBytes<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Blob);
@@ -80,6 +86,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsChar))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, char> GetAsChar<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Char);
@@ -94,6 +101,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsDateTime))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, DateTime> GetAsDateTime<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Date);
@@ -108,6 +116,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsDateTimeOffset))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, DateTimeOffset> GetAsDateTimeOffset<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.TimeStampTZ);
@@ -122,6 +131,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsDecimal))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, decimal> GetAsDecimal<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Decimal);
@@ -136,6 +146,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsDouble))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, double> GetAsDouble<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Double);
@@ -150,6 +161,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsFloat))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, float> GetAsFloat<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Single);
@@ -164,6 +176,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsGuid))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, Guid> GetAsGuid<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Raw);
@@ -178,6 +191,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsInt16))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, short> GetAsInt16<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Int16);
@@ -192,6 +206,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsInt32))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, int> GetAsInt32<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Int32);
@@ -206,6 +221,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsInt64))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, long> GetAsInt64<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Int64);
@@ -416,6 +432,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsString))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, string> GetAsString<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.Varchar2);
@@ -430,6 +447,7 @@ public static class OracleResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleColumnIntrinsics), nameof(OracleColumnIntrinsics.GetAsTimeSpan))]
     public static OracleResultColumnBuilderProxy<TResult, TProperty, TimeSpan> GetAsTimeSpan<TResult, TProperty>(this OracleResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(OracleDbType.IntervalDS);

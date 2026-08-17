@@ -4,6 +4,7 @@ using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder.ResultBinding;
 
@@ -26,6 +27,7 @@ public class OracleResultBuilder<TResult>(IProcedureThrowHelper throwHelper)
     /// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
     /// <param name="propertySelector">A lambda expression selecting the property to be mapped.</param>
     /// <returns>A new <see cref="OracleResultColumnBuilder{TResult, TProperty}"/> to configure the column.</returns>
+    [StructuralOperation(StructuralRole.Column)]
     public OracleResultColumnBuilder<TResult, TProperty> Column<TProperty>(Expression<Func<TResult, TProperty>> propertySelector)
     {
         OracleResultColumnBuilder<TResult, TProperty> columnBuilder = new(propertySelector, ThrowHelper);

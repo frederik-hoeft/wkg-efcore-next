@@ -3,6 +3,7 @@ using System.Linq.Expressions;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping;
 using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.Extensions;
 
@@ -20,6 +21,7 @@ public static class OracleProcedureBuilderExtensions
     /// <param name="builder">The procedure builder.</param>
     /// <param name="parameterExpression">An lambda expression that identifies the property of the <typeparamref name="TIOContainer"/> that should be mapped to this parameter.</param>
     /// <returns>A new <see cref="OracleParameterBuilder{TIOContainer, TParameter}"/> instance to configure the scalar return value parameter.</returns>
+    [StructuralOperation(StructuralRole.ReturnsScalar)]
     public static OracleParameterBuilder<TIOContainer, TParameter> ReturnsScalar<TProcedure, TIOContainer, TParameter>(this OracleProcedureBuilder<TProcedure, TIOContainer> builder, Expression<Func<TIOContainer, TParameter>> parameterExpression)
         where TProcedure : StoredProcedure<TIOContainer>, IOracleStoredProcedure<TIOContainer>
         where TIOContainer : class

@@ -1,6 +1,8 @@
 ﻿using MySql.Data.MySqlClient;
 using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
@@ -17,6 +19,7 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 /// Initializes a new instance of the <see cref="MySqlResultColumnBuilderProxy{TResult, TProperty, TColumn}"/> class.
 /// </remarks>
 /// <param name="proxiedBuilder">The proxied builder.</param>
+[ProcedureGrammarScope(GrammarScopeKind.Column, typeof(MySqlColumnIntrinsics), Initializer = nameof(MySqlColumnIntrinsics.Create), Finalizer = nameof(MySqlColumnIntrinsics.Read))]
 public class MySqlResultColumnBuilderProxy<TResult, TProperty, TColumn>(MySqlResultColumnBuilder<TResult, TProperty> proxiedBuilder)
     : TypedResultColumnBuilderProxy<TResult, TProperty, TColumn, MySqlResultColumnBuilder<TResult, TProperty>, MySqlResultColumnBuilderProxy<TResult, TProperty, TColumn>>(proxiedBuilder), IMySqlResultColumnBuilder
 {

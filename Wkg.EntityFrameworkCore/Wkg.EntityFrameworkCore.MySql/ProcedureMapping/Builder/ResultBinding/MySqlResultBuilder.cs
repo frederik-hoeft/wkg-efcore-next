@@ -4,6 +4,7 @@ using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
@@ -20,6 +21,7 @@ public interface IMySqlResultBuilder : IResultBuilder;
 /// Initializes a new instance of the <see cref="MySqlResultBuilder{TResult}"/> class.
 /// </remarks>
 /// <param name="throwHelper">The <see cref="IProcedureThrowHelper"/> to be used if an error is encountered.</param>
+[ProcedureGrammarScope(GrammarScopeKind.Result, typeof(object))]
 public class MySqlResultBuilder<TResult>(IProcedureThrowHelper throwHelper)
     : ResultBuilder<TResult, MySqlDataReader, MySqlResultBuilder<TResult>>(throwHelper, typeof(TResult)), IMySqlResultBuilder
     where TResult : class
@@ -31,6 +33,7 @@ public class MySqlResultBuilder<TResult>(IProcedureThrowHelper throwHelper)
     /// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
     /// <param name="propertySelector">A lambda expression selecting the property to be mapped.</param>
     /// <returns>A new <see cref="MySqlResultColumnBuilder{TResult, TProperty}"/> to configure the column.</returns>
+    [StructuralOperation(StructuralRole.Column)]
     public MySqlResultColumnBuilder<TResult, TProperty> Column<TProperty>(Expression<Func<TResult, TProperty>> propertySelector)
     {
         MySqlResultColumnBuilder<TResult, TProperty> columnBuilder = new(propertySelector, ThrowHelper);

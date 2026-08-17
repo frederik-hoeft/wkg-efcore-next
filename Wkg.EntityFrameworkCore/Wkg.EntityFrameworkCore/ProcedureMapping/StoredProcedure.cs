@@ -1,12 +1,15 @@
 ﻿using Microsoft.EntityFrameworkCore.Infrastructure;
 using Wkg.EntityFrameworkCore.ProcedureMapping.ResultCollections;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Runtime;
+using Wkg.EntityFrameworkCore.SourceGeneration.Contracts;
+using Wkg.EntityFrameworkCore.SourceGeneration.ProcedureMapping.Contracts;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping;
 
 /// <summary>
 /// The base class for all stored procedure command objects.
 /// </summary>
+[GeneratorContractRegistration<ProcedureGenerationContract>(ProcedureGenerationContract.StoredProcedure)]
 public abstract class StoredProcedure : IStoredProcedure
 {
     DatabaseFacade IStoredProcedure.DbContext { get; set; } = null!;

@@ -6,6 +6,8 @@ using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 
@@ -14,6 +16,7 @@ namespace Wkg.EntityFrameworkCore.Oracle.ProcedureMapping.Builder;
 /// </summary>
 /// <typeparam name="TProcedure">The concrete type of the stored procedure command object that represents the stored database procedure.</typeparam>
 /// <typeparam name="TIOContainer">The type of the Input/Output container object used to pass arguments to and from the stored procedure.</typeparam>
+[ProcedureGrammarScope(GrammarScopeKind.Procedure, typeof(OracleProcedureIntrinsics), Initializer = nameof(OracleProcedureIntrinsics.Create), Finalizer = nameof(OracleProcedureIntrinsics.BuildCommandText))]
 public class OracleProcedureBuilder<TProcedure, TIOContainer>
     : ProcedureBuilder<
         TProcedure,
@@ -38,6 +41,7 @@ public class OracleProcedureBuilder<TProcedure, TIOContainer>
     /// </summary>
     /// <param name="packageName">The package name of the stored procedure.</param>
     /// <returns>The current <see cref="OracleProcedureBuilder{TProcedure, TIOContainer}"/> instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(OracleProcedureIntrinsics), nameof(OracleProcedureIntrinsics.InPackage))]
     public OracleProcedureBuilder<TProcedure, TIOContainer> InPackage(string packageName)
     {
         _packageName = packageName;
@@ -50,6 +54,7 @@ public class OracleProcedureBuilder<TProcedure, TIOContainer>
     /// <typeparam name="TParameter">The CLR type of the parameter being mapped.</typeparam>
     /// <param name="parameterExpression">An lambda expression that identifies the property of the <typeparamref name="TIOContainer"/> that should be mapped to this parameter.</param>
     /// <returns>A new <see cref="OracleParameterBuilder{TIOContainer, TParameter}"/> instance to configure the parameter.</returns>
+    [StructuralOperation(StructuralRole.Parameter)]
     public OracleParameterBuilder<TIOContainer, TParameter> Parameter<TParameter>(Expression<Func<TIOContainer, TParameter>> parameterExpression)
     {
         OracleParameterBuilder<TIOContainer, TParameter> paramBuilder = new(parameterExpression, ThrowHelper);
@@ -61,6 +66,7 @@ public class OracleProcedureBuilder<TProcedure, TIOContainer>
     /// </summary>
     /// <typeparam name="TResult">The CLR type of the result entities within the result set.</typeparam>
     /// <returns>A new <see cref="OracleResultBuilder{TResult}"/> instance to configure the result set.</returns>
+    [StructuralOperation(StructuralRole.Returns)]
     public OracleResultBuilder<TResult> Returns<TResult>() where TResult : class
     {
         OracleResultBuilder<TResult> resultBuilder = new(ThrowHelper);

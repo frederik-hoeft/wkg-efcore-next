@@ -7,6 +7,7 @@ using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.Output;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
 
@@ -109,6 +110,7 @@ public abstract class ParameterBuilder<TIOContainer, TParameter, TCompiledParame
     /// </summary>
     /// <param name="parameterName">The name of the parameter.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.HasName)]
     public TParameterBuilderImpl HasName(string parameterName)
     {
         ParameterName = parameterName;
@@ -120,6 +122,7 @@ public abstract class ParameterBuilder<TIOContainer, TParameter, TCompiledParame
     /// </summary>
     /// <param name="direction">The direction of the parameter.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.HasDirection)]
     public TParameterBuilderImpl HasDirection(ParameterDirection direction)
     {
         ParameterDirection = direction;
@@ -135,6 +138,7 @@ public abstract class ParameterBuilder<TIOContainer, TParameter, TCompiledParame
     /// </summary>
     /// <param name="size">The maximum length of data that the parameter can hold.</param>
     /// <returns>The current builder instance.</returns>
+    [StructuralOperation(StructuralRole.HasSize)]
     public TParameterBuilderImpl HasSize(int size)
     {
         Size = size;

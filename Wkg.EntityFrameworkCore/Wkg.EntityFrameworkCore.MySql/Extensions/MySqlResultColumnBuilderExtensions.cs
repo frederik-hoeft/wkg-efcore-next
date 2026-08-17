@@ -6,6 +6,8 @@ using Wkg.EntityFrameworkCore.Extensions;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultConverters;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.Extensions;
 
@@ -21,6 +23,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsBoolean))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, bool> GetAsBoolean<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Byte);
@@ -35,6 +38,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsJson))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, object> GetAsJson<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.JSON);
@@ -52,6 +56,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsByte))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, byte> GetAsByte<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.UByte);
@@ -66,6 +71,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsBytes))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, byte[]> GetAsBytes<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Blob);
@@ -80,6 +86,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsDateTime))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, DateTime> GetAsDateTime<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.DateTime);
@@ -94,6 +101,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsDecimal))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, decimal> GetAsDecimal<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Decimal);
@@ -108,6 +116,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsDouble))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, double> GetAsDouble<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Double);
@@ -122,6 +131,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsFloat))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, float> GetAsFloat<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Float);
@@ -139,6 +149,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// This method requires the column to be a UUID string (<c>VARCHAR(36)</c>). For <c>BINARY(16)</c> columns, use <see cref="GetAsBytes{TResult,TProperty}(MySqlResultColumnBuilder{TResult,TProperty})"/> instead in combination with a custom conversion from <see langword="byte"/>[] to <see cref="Guid"/>.
     /// </remarks>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsGuid))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, Guid> GetAsGuid<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Guid);
@@ -153,6 +164,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsInt16))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, short> GetAsInt16<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Int16);
@@ -167,6 +179,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsInt32))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, int> GetAsInt32<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Int32);
@@ -181,6 +194,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsInt64))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, long> GetAsInt64<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Int64);
@@ -195,6 +209,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsMySqlDateTime))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, MySqlDateTime> GetAsMySqlDateTime<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.DateTime);
@@ -209,6 +224,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsMySqlDecimal))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, MySqlDecimal> GetAsMySqlDecimal<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Decimal);
@@ -223,6 +239,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsMySqlGeometry))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, MySqlGeometry> GetAsMySqlGeometry<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Geometry);
@@ -237,6 +254,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsSByte))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, sbyte> GetAsSByte<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Byte);
@@ -254,6 +272,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// The <see cref="Stream"/> returned by the compiler is not guaranteed to be seekable and must be disposed by the caller.
     /// </remarks>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsStream))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, Stream> GetAsStream<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Blob);
@@ -268,6 +287,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsString))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, string> GetAsString<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.VarChar);
@@ -282,6 +302,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsTimeSpan))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, TimeSpan> GetAsTimeSpan<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.Time);
@@ -296,6 +317,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsUInt16))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, ushort> GetAsUInt16<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.UInt16);
@@ -310,6 +332,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsUInt32))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, uint> GetAsUInt32<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.UInt32);
@@ -324,6 +347,7 @@ public static class MySqlResultColumnBuilderExtensions
     /// <typeparam name="TProperty">The type of the property being configured.</typeparam>
     /// <param name="builder">The builder.</param>
     /// <returns>The builder instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.GetAsUInt64))]
     public static MySqlResultColumnBuilderProxy<TResult, TProperty, ulong> GetAsUInt64<TResult, TProperty>(this MySqlResultColumnBuilder<TResult, TProperty> builder)
     {
         builder.HasDbType(MySqlDbType.UInt64);

@@ -6,6 +6,8 @@ using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 
@@ -25,6 +27,7 @@ internal interface IMySqlParameterBuilder : IParameterBuilder
 /// </summary>
 /// <typeparam name="TIOContainer">The type of the Input/Output container object used to pass arguments to and from the stored procedure.</typeparam>
 /// <typeparam name="TParameter">The CLR type of the parameter being mapped.</typeparam>
+[ProcedureGrammarScope(GrammarScopeKind.Parameter, typeof(MySqlParameterIntrinsics), Initializer = nameof(MySqlParameterIntrinsics.Create), Finalizer = nameof(MySqlParameterIntrinsics.Finalize))]
 public class MySqlParameterBuilder<TIOContainer, TParameter>
     : ParameterBuilder<
         TIOContainer,
@@ -55,6 +58,7 @@ public class MySqlParameterBuilder<TIOContainer, TParameter>
     /// </summary>
     /// <param name="mySqlDbType">The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> associated with the parameter of this MySQL procedure.</param>
     /// <returns>The current <see cref="MySqlParameterBuilder{TIOContainer, TParameter}"/> instance for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlParameterIntrinsics), nameof(MySqlParameterIntrinsics.HasDbType))]
     public MySqlParameterBuilder<TIOContainer, TParameter> HasDbType(MySqlDbType mySqlDbType)
     {
         MySqlDbType = mySqlDbType;

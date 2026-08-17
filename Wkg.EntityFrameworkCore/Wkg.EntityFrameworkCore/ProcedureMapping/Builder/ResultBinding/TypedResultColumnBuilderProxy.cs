@@ -2,6 +2,7 @@
 using System.Linq.Expressions;
 using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 
@@ -49,6 +50,7 @@ public abstract class TypedResultColumnBuilderProxy<TResult, TProperty, TColumn,
     /// </summary>
     /// <param name="conversion">The conversion expression.</param>
     /// <returns>The builder instance.</returns>
+    [StructuralOperation(StructuralRole.RequiresConversion)]
     public TProxyImpl RequiresConversion(Expression<Func<TColumn, TProperty>> conversion)
     {
         ProxiedBuilder.RequiresConversion(conversion);

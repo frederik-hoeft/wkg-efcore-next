@@ -6,6 +6,7 @@ using System.Reflection;
 using Wkg.Common.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 
@@ -118,6 +119,7 @@ public abstract class ResultColumnBuilderBase<TResult, TProperty, TResultColumnB
     /// </summary>
     /// <param name="name">The name of the column.</param>
     /// <returns>The current instance of the builder.</returns>
+    [StructuralOperation(StructuralRole.HasName)]
     public virtual TResultColumnBuilderImpl HasName(string name)
     {
         ColumnName = name;
@@ -128,6 +130,7 @@ public abstract class ResultColumnBuilderBase<TResult, TProperty, TResultColumnB
     /// Configures whether this property must have a value assigned to it or whether <see langword="null"/> is a valid value.
     /// </summary>
     /// <returns>The current instance of the builder.</returns>
+    [StructuralOperation(StructuralRole.MayBeNull)]
     public virtual TResultColumnBuilderImpl MayBeNull()
     {
         IsNullable = true;
@@ -179,6 +182,7 @@ public abstract class ResultColumnBuilder<TResult, TProperty, TResultColumnBuild
     /// <typeparam name="TColumn">The type of the column in the <see cref="DbDataReader"/> result set.</typeparam>
     /// <param name="conversion">The expression to convert values of type <typeparamref name="TColumn"/> to <typeparamref name="TProperty"/>.</param>
     /// <returns>The current instance of the builder.</returns>
+    [StructuralOperation(StructuralRole.RequiresConversion)]
     public virtual TResultColumnBuilderImpl RequiresConversion<TColumn>(Expression<Func<TColumn, TProperty>> conversion)
     {
         Conversion = conversion;

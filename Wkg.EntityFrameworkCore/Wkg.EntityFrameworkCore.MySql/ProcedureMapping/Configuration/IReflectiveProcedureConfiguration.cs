@@ -2,6 +2,7 @@
 using Wkg.EntityFrameworkCore.Configuration.Reflection.Discovery;
 using Wkg.EntityFrameworkCore.MySql.Extensions;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Configuration;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration;
 
@@ -10,6 +11,6 @@ namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration;
 /// </summary>
 /// <typeparam name="TProcedure">The type of the stored procedure command object to load and configure.</typeparam>
 /// <typeparam name="TIOContainer">The type of the input/output container used by <typeparamref name="TProcedure"/>.</typeparam>
-public interface IReflectiveProcedureConfiguration<TProcedure, TIOContainer> : IProcedureConfiguration<TProcedure, TIOContainer>
+public interface IReflectiveProcedureConfiguration<TProcedure, TIOContainer> : IProcedureConfiguration<TProcedure, TIOContainer>, IDiscoverableProcedureConfiguration
     where TProcedure : StoredProcedure, IProcedureConfiguration<TProcedure, TIOContainer>, IMySqlStoredProcedure<TIOContainer>
     where TIOContainer : class;

@@ -4,6 +4,8 @@ using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder.ThrowHelpers;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler.ResultBinding;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
+using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 
@@ -23,6 +25,7 @@ public interface IMySqlResultColumnBuilder : IResultColumnBuilder
 /// </summary>
 /// <typeparam name="TResult">The type of the result collection.</typeparam>
 /// <typeparam name="TProperty">The type of the property to be mapped.</typeparam>
+[ProcedureGrammarScope(GrammarScopeKind.Column, typeof(MySqlColumnIntrinsics), Initializer = nameof(MySqlColumnIntrinsics.Create), Finalizer = nameof(MySqlColumnIntrinsics.Read))]
 public class MySqlResultColumnBuilder<TResult, TProperty>
     : ResultColumnBuilder<TResult, TProperty, MySqlResultColumnBuilder<TResult, TProperty>>, IMySqlResultColumnBuilder
 {
@@ -39,6 +42,7 @@ public class MySqlResultColumnBuilder<TResult, TProperty>
     /// </summary>
     /// <param name="dbType">The <see cref="global::MySql.Data.MySqlClient.MySqlDbType"/> to set.</param>
     /// <returns>The column builder for fluent configuration.</returns>
+    [TerminalIntrinsic(typeof(MySqlColumnIntrinsics), nameof(MySqlColumnIntrinsics.HasDbType))]
     public MySqlResultColumnBuilder<TResult, TProperty> HasDbType(MySqlDbType dbType)
     {
         if (MySqlDbType is not null)

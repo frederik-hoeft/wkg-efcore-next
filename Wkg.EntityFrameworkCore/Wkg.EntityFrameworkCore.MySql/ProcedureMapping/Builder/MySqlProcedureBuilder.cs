@@ -7,6 +7,7 @@ using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Compiler.Output;
 using Wkg.EntityFrameworkCore.ProcedureMapping;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.ProcedureMapping.Compiler;
+using Wkg.EntityFrameworkCore.ProcedureMapping.Generation;
 
 namespace Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 
@@ -39,6 +40,7 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
     /// <typeparam name="TParameter">The CLR type of the parameter being mapped.</typeparam>
     /// <param name="parameterExpression">An lambda expression that identifies the property of the <typeparamref name="TIOContainer"/> that should be mapped to this parameter.</param>
     /// <returns>A new <see cref="MySqlParameterBuilder{TIOContainer, TParameter}"/> instance to configure the parameter.</returns>
+    [StructuralOperation(StructuralRole.Parameter)]
     public MySqlParameterBuilder<TIOContainer, TParameter> Parameter<TParameter>(Expression<Func<TIOContainer, TParameter>> parameterExpression)
     {
         MySqlParameterBuilder<TIOContainer, TParameter> paramBuilder = new(parameterExpression, ThrowHelper);
@@ -51,6 +53,7 @@ public class MySqlProcedureBuilder<TProcedure, TIOContainer>
     /// </summary>
     /// <typeparam name="TResult">The CLR type of the result entities within the result set.</typeparam>
     /// <returns>A new <see cref="MySqlResultBuilder{TResult}"/> instance to configure the result set.</returns>
+    [StructuralOperation(StructuralRole.Returns)]
     public MySqlResultBuilder<TResult> Returns<TResult>() where TResult : class
     {
         MySqlResultBuilder<TResult> resultBuilder = new(ThrowHelper);

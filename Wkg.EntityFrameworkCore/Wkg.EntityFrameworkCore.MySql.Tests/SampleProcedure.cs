@@ -6,6 +6,7 @@ using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Builder.ResultBinding;
 using Wkg.EntityFrameworkCore.MySql.ProcedureMapping.Configuration;
 using Wkg.EntityFrameworkCore.ProcedureMapping.ResultCollections;
+using Wkg.EntityFrameworkCore.SourceGeneration.Discovery;
 
 namespace Wkg.EntityFrameworkCore.MySql.Tests;
 
@@ -48,6 +49,9 @@ public class GetPersonsByName : MySqlStoredProcedure<GetPersonsByNameContainer, 
             .HasName("id");
         _ = result.Column(io => io.Name)
             .HasName("name");
+        _ = result.Column(io => io.Address)
+            .HasName("address")
+            .GetAsJson();
         // in this example, the UUID column is stored as a BINARY(16) column in the database.
         // => tell RECAP to read the column as a byte array and provide a conversion function
         //    that converts the byte array to a Guid.
@@ -63,6 +67,11 @@ public class GetPersonsByName : MySqlStoredProcedure<GetPersonsByNameContainer, 
 public record GetPersonsByNameContainer(string Name, int InvalidCount);
 
 // define a result class that represents a single row of the result set returned by this procedure
-public record Person(int Id, string Name, Guid Uuid);
+public record Person(int Id, string Name, Guid Uuid, Address Address);
+
+public record Address(string StreetNo, int HouseNo);
 
 public record GetPersonsByNameResult(IReadOnlyList<Person> Persons, int InvalidCount);
+
+[ModelLoader(AssemblyDiscoveryFailureBehavior = AssemblyDiscoveryFailureBehavior.Silent)]
+public sealed partial class TestProcedureLoader;

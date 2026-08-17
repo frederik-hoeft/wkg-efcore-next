@@ -22,6 +22,11 @@ public abstract class ProcedureBuildPipeline
         where TDataReader : DbDataReader
     {
         ArgumentNullException.ThrowIfNull(procedureBuilder);
+        if (ProcedureRegistry.IsRegistered(procedureBuilder.ProcedureClrType))
+        {
+            return;
+        }
+
         ICompiledProcedure compiledProcedure = procedureBuilder
             .Build()
             .Compile(
