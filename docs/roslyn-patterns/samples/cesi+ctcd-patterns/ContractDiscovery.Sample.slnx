@@ -1,0 +1,8 @@
+<Solution>
+  <Project Path="ContractDiscovery.Generator/ContractDiscovery.Generator.csproj" />
+  <Project Path="ContractDiscovery.Provider/ContractDiscovery.Provider.csproj" />
+  <Folder Name="/Solution Items/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Project Path="ContractDiscovery.Consumer/ContractDiscovery.Consumer.csproj" />
+</Solution>
